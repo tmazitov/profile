@@ -7,8 +7,8 @@
 					Journey
 				</div>
 				<div class="comment">
-					Hi! My name is Tim and this is my site.<br/>
-					The Site about my journey in the world of aprogramming languages and mathematics.<br/>
+					Hi! My name is Tim. Im a backend + frontend developer.<br/>
+					This Site about my journey in the world of a programming languages and mathematics.<br/>
 					Here you can find some information about me and my projects.<br/>
 				</div>
 				<div class="tools">
@@ -33,7 +33,7 @@ export default {
 
 <style>
 .content{
-	max-height: 800px;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -52,14 +52,26 @@ export default {
 	font-weight: 300;	
 }
 .greetings{
-	font-size: 4em;
+	font-size: 3.5em;
+	line-height: 64px;
 	font-weight: 600;
-	text-align: center;
+	text-align: left;
+}
+
+.comment{
+	font-size: 14px;
 }
 
 .tools {
+	margin-top: 8px;
 	display: flex;
 	gap: 16px;
 	flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+	.greetings__container{
+		padding: 32px;
+	}
 }
 </style>

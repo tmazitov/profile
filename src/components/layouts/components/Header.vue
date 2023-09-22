@@ -3,6 +3,7 @@
         <div class="header__item logo">My Dev Journey</div>
         <div class="header__section">
             <div class="header__item">Home</div>
+            <div class="header__item">Projects</div>
             <div class="header__item">Articles</div>
             <div class="header__item">Library</div>
         </div>
@@ -18,6 +19,12 @@
                             <Icon icon="tabler:home-2" width="24" height="24" />
                         </div>
                         <div class="side-menu__item-title">Home</div>
+                    </div>
+                    <div class="side-menu__item">
+                        <div class="side-menu__item-icon">
+                            <Icon icon="tabler:briefcase" width="24" height="24" />
+                        </div>
+                        <div class="side-menu__item-title">Projects</div>
                     </div>
                     <div class="side-menu__item">
                         <div class="side-menu__item-icon">

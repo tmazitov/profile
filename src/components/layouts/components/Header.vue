@@ -110,8 +110,8 @@ export default {
 		display: none;
 	}
     .header__component{
-        width: calc(100% - 48px);
-        padding-right: 16px;
+        width: calc(100% - 32px);
+        padding: 0 16px;
     }
 }
 @media (min-width: 769px) {

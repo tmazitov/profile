@@ -18,7 +18,7 @@
 				<div class="project__submit-date">
 					{{ project.finishDate.toLocaleDateString() }}
 				</div>
-				<div class="project__button">More</div>
+				<div class="project__button" @click="openProject">More</div>
 			</div>
 		</div>
 	</div>
@@ -29,6 +29,7 @@
 import Category from '../Category.vue';
 
 import Project from '../../types/project';
+import { useRouter } from 'vue-router';
 
 export default {
 	name: "Project",
@@ -42,7 +43,16 @@ export default {
 		Category,
 	},
 	setup(props){
+		let router = useRouter()
+
+		const openProject = () => {
+			router.push({name: "Project", params: {
+				projectId: props.project.id,
+			}})
+		}
+
 		return {
+			openProject,
 			project: props.project,
 		}
 	}
@@ -78,6 +88,10 @@ export default {
 .project__name{
 	font-size: 18px;
 	font-weight: 500;
+	width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .project__categories{
@@ -112,5 +126,24 @@ export default {
 
 .project__button:hover{
 	color: #aaaaaa;
+}
+
+.project__image {
+	width: 100%;
+}
+
+.project__image > img{
+	width: inherit;
+}
+
+.project__description{
+    line-height: 1.5em;
+    height: 3em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2; /* number of lines to show */
+			line-clamp: 2;
+	-webkit-box-orient: vertical;
 }
 </style>

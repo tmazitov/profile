@@ -1,8 +1,8 @@
 <template>
     <div class="header__component">
-        <div class="header__item logo">My Dev Journey</div>
+        <div class="header__item logo" @click="goToPage('Home')">My Dev Journey</div>
         <div class="header__section">
-            <div class="header__item">Home</div>
+            <div class="header__item" @click="goToPage('Home')">Home</div>
             <div class="header__item">Projects</div>
             <div class="header__item">Articles</div>
             <div class="header__item">Library</div>
@@ -12,9 +12,9 @@
             <div class="header__item">LinkedIn</div>
         </div>
         <div class="header__menu">
-            <SideMenu>
+            <SideMenu v-model:is-open="sideBarIsOpen">
                 <div class="side-menu__list">
-                    <div class="side-menu__item">
+                    <div class="side-menu__item" @click="goToPage('Home')">
                         <div class="side-menu__item-icon">
                             <Icon icon="tabler:home-2" width="24" height="24" />
                         </div>
@@ -59,12 +59,26 @@
 <script lang="ts">
 import SideMenu from './menu/SideMenu.vue'
 import {Icon} from '@iconify/vue'
+import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 
 export default {
     name: "Header",
     components: {
         SideMenu,
         Icon,
+    },
+    setup(){
+        let router = useRouter()
+        let sideBarIsOpen = ref(false)
+        const goToPage = (pageName: string) => {
+            router.push({name: pageName})
+            sideBarIsOpen.value = false
+        }
+        return {
+            goToPage,
+            sideBarIsOpen,
+        }
     }
 }
 </script>

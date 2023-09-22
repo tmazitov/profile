@@ -1,36 +1,32 @@
 <template>
-	<div class="main__page">
-		<div class="content">
-			<div class="greetings__container">
-				<div class="greetings">
-					My Dev<span class="simple">elopment</span>
-					Journey
-				</div>
-				<div class="comment">
-					Hi! My name is Tim. Im a backend + frontend developer.<br/>
-					This Site about my journey in the world of a programming languages and mathematics.<br/>
-					Here you can find some information about me and my projects.<br/>
-				</div>
-				<div class="tools">
-					<BaseButton title="Explore" primary/>
-					<BaseButton title="Get started"/>
-				</div>
-			</div>
-
-			<div class="projects__container">
-				<div class="projects__header">
-					<div class="projects__title">Last projects</div>
-					<div class="projects__button">See all</div>
-				</div>
-				<ProjectList/>
-			</div>
+	<div class="greetings__container">
+		<div class="greetings">
+			My Dev<span class="simple">elopment</span>
+			Journey
 		</div>
+		<div class="comment">
+			Hi! My name is Tim. Im a backend + frontend developer.<br/>
+			This Site about my journey in the world of a programming languages and mathematics.<br/>
+			Here you can find some information about me and my projects.<br/>
+		</div>
+		<div class="tools">
+			<BaseButton title="Explore" primary/>
+			<BaseButton title="Get started"/>
+		</div>
+	</div>
+
+	<div class="projects__container">
+		<div class="projects__header">
+			<div class="projects__title">Last projects</div>
+			<div class="projects__button">See all</div>
+		</div>
+		<ProjectList/>
 	</div>
 </template>
 
 <script lang="ts">
 import BaseButton from '../components/BaseButton.vue';
-import ProjectList from '../components/project-list/ProjectList.vue';
+import ProjectList from '../components/project/ProjectList.vue';
 
 export default {
 	name: "MainPage",
@@ -42,20 +38,8 @@ export default {
 </script>
 
 <style>
-.content{
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 24px;
-	margin-top: 32px;
-}
-
-.content > * {
-	width: 60%;
-}
-
 .greetings__container{
+	margin-top: 32px;
 	display: flex;
 	flex-direction: column;
 	align-items: start;
@@ -83,18 +67,6 @@ export default {
 	flex-wrap: wrap;
 }
 
-@media (max-width: 768px) {
-	.content > *{
-		padding: 16px;
-		width: auto;
-	}
-}
-@media (min-width: 768px) {
-	.content > *{
-		padding: 32px; 
-		padding-bottom: 24px;
-	}
-}
 
 .projects__container{
 	display: flex;

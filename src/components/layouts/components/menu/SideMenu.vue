@@ -14,17 +14,27 @@
 
 <script lang="ts">
 import { Icon } from '@iconify/vue';
-import { ref } from 'vue';
+import { computed } from 'vue';
 
 export default {
 	name: "SideMenu",
+	props: {
+		isOpen: {
+			type: Boolean,
+			required: true,
+		}
+	},
+	model: {
+		prop: "isOpen",
+		event: "update:isOpen",
+	},
 	components: {
 		Icon,
 	},
-	setup(){
-		let isOpen = ref(false)
+	setup(props, ctx){
+		let isOpen = computed(() => props.isOpen)
 		const toggleOpen = () => {
-			isOpen.value = !isOpen.value
+			ctx.emit("update:isOpen", !props.isOpen)
 		}
 		return {
 			isOpen,
@@ -53,7 +63,6 @@ export default {
 	top: 56px;
 	background: #1a1a1a;
 	border-left: 1px solid #2d2d2d;
-	border-top: 1px solid #2d2d2d;
 	overflow-x: hidden;
 }
 

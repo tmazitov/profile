@@ -1,6 +1,6 @@
 <template>
 	<div class="project__list">
-		<ProjectVue v-for="project in projects"
+		<ProjectCard v-for="project in projects"
 			:project="project"  
 			:key="`project__${project.id}`"/>
 	</div>
@@ -8,13 +8,13 @@
 
 <script lang="ts">
 import Project from '../../types/project';
-import ProjectVue from './Project.vue';
+import ProjectCard from './ProjectCard.vue';
 import ProjectCategory from '../../types/projectCategory';
 
 export default {
 	name: "ProjectList",
 	components: {
-		ProjectVue
+		ProjectCard
 	},
 	setup(){
 		let projects:Array<Project> = []

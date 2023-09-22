@@ -1,7 +1,9 @@
 <template>
     <div class="main__layout">
         <Header></Header>
-        <slot></slot>
+        <div class="content">
+            <slot></slot>
+        </div>
     </div>
 </template>
 
@@ -18,4 +20,27 @@ export default {
 
 <style>
 
+.content{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 24px;
+}
+
+.content > * {
+	width: 60%;
+}
+
+@media (max-width: 768px) {
+	.content > *{
+		margin: 0 16px;
+		width: auto;
+	}
+}
+@media (min-width: 768px) {
+	.content > *{
+		margin: 0 32px; 
+	}
+}
 </style>

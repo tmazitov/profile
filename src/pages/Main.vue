@@ -16,17 +16,24 @@
 					<BaseButton title="Get started"/>
 				</div>
 			</div>
+
+			<div class="projects__container">
+				<div class="projects__title">My projects</div>
+				<ProjectList/>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
 import BaseButton from '../components/BaseButton.vue';
+import ProjectList from '../components/project-list/ProjectList.vue';
 
 export default {
 	name: "MainPage",
 	components: {
 		BaseButton,
+		ProjectList,
 	}
 }
 </script>
@@ -40,8 +47,11 @@ export default {
 	gap: 24px;
 }
 
+.content > * {
+	width: 60%;
+}
+
 .greetings__container{
-	padding: 96px 64px;
 	display: flex;
 	flex-direction: column;
 	align-items: start;
@@ -52,14 +62,14 @@ export default {
 	font-weight: 300;	
 }
 .greetings{
-	font-size: 3.5em;
+	font-size: 7vh;
 	line-height: 64px;
 	font-weight: 600;
 	text-align: left;
 }
 
 .comment{
-	font-size: 14px;
+	font-size: 2.3vh;
 }
 
 .tools {
@@ -70,8 +80,27 @@ export default {
 }
 
 @media (max-width: 768px) {
-	.greetings__container{
+	.content > *{
 		padding: 32px;
+		width: auto;
+
 	}
+}
+@media (min-width: 768px) {
+	.content > *{
+		padding: 64px;
+		padding-bottom: 24px;
+	}
+}
+
+.projects__container{
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.projects__title{
+	font-size: 20px;
+	font-weight: 400;
 }
 </style>

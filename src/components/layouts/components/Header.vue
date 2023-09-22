@@ -69,7 +69,9 @@ export default {
     border-bottom: 1px solid;
     border-color: #2d2d2d;
     position: sticky;
-
+    background: #1a1a1a;
+    top: 0;
+        
     display: flex;
     justify-content: space-between;
     flex-direction: row;

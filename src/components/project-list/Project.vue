@@ -48,11 +48,14 @@ export default {
 	border-radius: 16px;
 	font-size: 14px;
 
-
 	width: inherit;
 	overflow: hidden;
+	transition: background .3s;
 }
 
+.project:hover{
+	background: #3a3a3a;
+}
 .project__content{
 	padding: 10px;
 	display: flex;

@@ -14,7 +14,6 @@ import ProjectCategory from '../../types/projectCategory';
 export default {
 	name: "ProjectList",
 	components: {
-		Project,
 		ProjectVue
 	},
 	setup(){
@@ -49,7 +48,7 @@ export default {
 	grid-row-gap: 16px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
 	.project__list{
 		grid-template-columns: repeat(2, 1fr);
 	}

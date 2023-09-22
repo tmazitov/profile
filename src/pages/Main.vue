@@ -81,14 +81,13 @@ export default {
 
 @media (max-width: 768px) {
 	.content > *{
-		padding: 32px;
+		padding: 16px;
 		width: auto;
-
 	}
 }
 @media (min-width: 768px) {
 	.content > *{
-		padding: 64px;
+		padding: 32px; 
 		padding-bottom: 24px;
 	}
 }

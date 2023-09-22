@@ -10,8 +10,16 @@
 				v-for="category in project.categories" 
 				:key="`category__${category.id}`"/>
 		</div>
-		<div class="project__description">
-			{{ project.description }}
+		<div class="project__details">
+			<div class="project__description">
+				{{ project.description }}
+			</div>
+			<div class="project__buttons">
+				<div class="project__submit-date">
+					{{ project.finishDate.toLocaleDateString() }}
+				</div>
+				<div class="project__button">More</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -52,10 +60,6 @@ export default {
 	overflow: hidden;
 	transition: background .3s;
 }
-
-.project:hover{
-	background: #3a3a3a;
-}
 .project__content{
 	padding: 10px;
 	display: flex;
@@ -82,4 +86,31 @@ export default {
 	gap: 10px;
 }
 
+.project__details{
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+}
+.project__buttons{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.project__submit-date{
+	color: #868686;
+	cursor: pointer;
+}
+
+.project__button {
+	text-decoration: underline;
+	padding: 0 10px;
+	cursor: pointer;
+	color: #868686;
+	user-select: none;
+}
+
+.project__button:hover{
+	color: #aaaaaa;
+}
 </style>

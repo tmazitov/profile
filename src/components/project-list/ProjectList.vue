@@ -21,14 +21,15 @@ export default {
 		for (let i = 0; i < 6; i++)
 		{
 			projects.push(new Project({
-				id: 1,
+				id: i,
 				name: "ExampleProject",
 				categories: [
 					new ProjectCategory(1, "TS", "#3178c6"),
 					new ProjectCategory(2, "Vue", "#41B883"),
 					new ProjectCategory(3, "Frontend", "#5CB3FF"),
 				],
-				gif: "https://media.tenor.com/VOdWjm2zbEAAAAAC/gandalf-sax-guy.gif",
+				gif: "https://i.pinimg.com/originals/9d/ea/64/9dea6422afee150cbe2f65b5317285eb.gif",
+				finishDate: new Date(),
 				description: "This is the example of the description for the test project"
 			}))
 		}

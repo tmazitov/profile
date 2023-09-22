@@ -18,7 +18,10 @@
 			</div>
 
 			<div class="projects__container">
-				<div class="projects__title">My projects</div>
+				<div class="projects__header">
+					<div class="projects__title">Last projects</div>
+					<div class="projects__button">See all</div>
+				</div>
 				<ProjectList/>
 			</div>
 		</div>
@@ -45,6 +48,7 @@ export default {
 	flex-direction: column;
 	align-items: center;
 	gap: 24px;
+	margin-top: 32px;
 }
 
 .content > * {
@@ -98,8 +102,26 @@ export default {
 	gap: 16px;
 }
 
+.projects__header{
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
 .projects__title{
 	font-size: 20px;
-	font-weight: 400;
+	font-weight: 500;
 }
+
+.projects__button{
+	text-decoration: underline;
+	font-size: 16px;
+	cursor: pointer;
+	color: #868686;
+	user-select: none;
+}
+.projects__button:hover{
+	color: #aaaaaa;
+}
+
 </style>

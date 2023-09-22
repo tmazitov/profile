@@ -1,13 +1,17 @@
 <template>
-<div class="category" v-bind:style="{
-	'border-color' : category.color,
-	'background' : category.color + '12',
-}">
-	{{ category.name }}
-</div>
+	<div class="category" 
+	@mouseover="isHovered = true" 
+	@mouseleave="isHovered = false"
+	v-bind:style="{
+		'border-color' : category.color,
+		'background' : category.color + (isHovered ? '2a' : '12'),
+	}">
+		{{ category.name }}
+	</div>
 </template>
 
 <script lang="ts">
+import { ref } from 'vue';
 import ProjectCategory from '../types/projectCategory';
 export default {
 	name: "Category",
@@ -18,7 +22,10 @@ export default {
 		},
 	},
 	setup(props) {
+		let isHovered = ref(false)
+
 		return {
+			isHovered,
 			category: props.category
 		}
 	},
@@ -36,5 +43,7 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	user-select: none;
 }
 </style>

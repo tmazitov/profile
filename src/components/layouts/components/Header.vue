@@ -128,7 +128,7 @@ export default {
 .side-menu__item {
     padding: 10px 8px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 300;
     display: flex;
     flex-direction: row;
     gap: 8px;

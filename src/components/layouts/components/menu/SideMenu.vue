@@ -48,12 +48,12 @@ export default {
 .menu__content{
 	width: 170px;
 	height: calc(100vh - 56px);
-
 	position: absolute;
 	right: 0;
 	top: 56px;
 	background: #1a1a1a;
 	border-left: 1px solid #2d2d2d;
+	border-top: 1px solid #2d2d2d;
 	overflow-x: hidden;
 }
 

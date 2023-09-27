@@ -18,14 +18,18 @@
 	<div class="projects__container">
 		<div class="projects__header">
 			<div class="projects__title">Last projects</div>
-			<div class="projects__button">See all</div>
+			<div class="projects__button" 
+			@click="goToPage('ProjectList')">
+			See all
+			</div>
 		</div>
 		<ProjectList/>
 	</div>
 </template>
 
 <script lang="ts">
-import BaseButton from '../components/BaseButton.vue';
+import { useRouter } from 'vue-router';
+import BaseButton from '../components/inputs/BaseButton.vue';
 import ProjectList from '../components/project/ProjectList.vue';
 
 export default {
@@ -33,6 +37,13 @@ export default {
 	components: {
 		BaseButton,
 		ProjectList,
+	},
+	setup(){
+		const router = useRouter()
+		const goToPage = (name: string) => router.push({name})
+		return {
+			goToPage,
+		}
 	}
 }
 </script>
@@ -51,6 +62,7 @@ export default {
 }
 .greetings{
 	font-size: 7vh;
+	user-select: none;
 	line-height: 64px;
 	font-weight: 600;
 	text-align: left;

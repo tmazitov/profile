@@ -11,7 +11,7 @@
 		</div>
 
 		<div class="project__categories">
-			<Category :category="category"
+			<Category :title="category.name" :color="category.color"
 					v-for="category in project.categories" 
 					:key="`category__${category.id}`"/>
 		</div>
@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import Category from '../components/Category.vue'
+import Category from '../components/inputs/Category.vue'
 
 import Project from '../types/project';
 import ProjectCategory from '../types/projectCategory';
@@ -88,11 +88,15 @@ export default {
 	gap: 10px;
 }
 
+@media (min-width: 480px) {
+	.project__image{
+		margin-top: 24px;
+	}
+}
 
 .project__image {
 	width: 100%;
 	overflow: hidden;
-	margin-top: 24px;
 }
 
 .project__image > img{

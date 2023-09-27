@@ -18,7 +18,7 @@ export default {
 	},
 	setup(){
 		let projects:Array<Project> = []
-		for (let i = 0; i < 6; i++)
+		for (let i = 0; i < 3; i++)
 		{
 			projects.push(new Project({
 				id: i,

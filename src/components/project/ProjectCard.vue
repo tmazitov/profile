@@ -6,7 +6,7 @@
 	<div class="project__content">
 		<div class="project__name">{{ project.name }}</div>
 		<div class="project__categories">
-			<Category :category="category"
+			<Category :title="category.name" :color="category.color"
 				v-for="category in project.categories" 
 				:key="`category__${category.id}`"/>
 		</div>
@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import Category from '../Category.vue';
+import Category from '../inputs/Category.vue';
 
 import Project from '../../types/project';
 import { useRouter } from 'vue-router';

@@ -3,7 +3,7 @@
         <div class="header__item logo" @click="goToPage('Home')">My Dev Journey</div>
         <div class="header__section">
             <div class="header__item" @click="goToPage('Home')">Home</div>
-            <div class="header__item">Projects</div>
+            <div class="header__item" @click="goToPage('ProjectList')">Projects</div>
             <div class="header__item">Articles</div>
             <div class="header__item">Library</div>
         </div>
@@ -20,7 +20,7 @@
                         </div>
                         <div class="side-menu__item-title">Home</div>
                     </div>
-                    <div class="side-menu__item">
+                    <div class="side-menu__item" @click="goToPage('ProjectList')">
                         <div class="side-menu__item-icon">
                             <Icon icon="tabler:briefcase" width="24" height="24" />
                         </div>

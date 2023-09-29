@@ -83,6 +83,7 @@ export default {
 
 .project__image > img{
 	width: inherit;
+	user-select: none;
 }
 
 .project__name{

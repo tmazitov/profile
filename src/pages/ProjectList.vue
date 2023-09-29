@@ -3,20 +3,9 @@
 		My Projects
 	</div>
 
-	<div class="project-list__filters">
-		<BaseInput
-		class="filter-search"
-		v-model:value="data.search" 
-		placeholder="Search"
-		:leftIcon="{
-			name: 'tabler:search',
-		}"
-		:rightIcon="{ 
-			name: 'tabler:x',
-			isHidden: data.search.length == 0,
-			onClick: () => data.search = ''
-		}"/>		
-	</div>
+	<ProjectListFilter
+		v-model="data.filters"
+	/>
 
 	<div class="project-list__content">
 		<ProjectCard :project="project"
@@ -30,6 +19,8 @@
 import { reactive } from 'vue';
 import ProjectCard from '../components/project/ProjectCard.vue';
 import BaseInput from '../components/inputs/BaseInput.vue';
+import BaseSelect from '../components/inputs/BaseSelect.vue';
+import ProjectListFilter from '../components/filters/ProjectListFilter.vue';
 
 import Project from '../types/project';
 import ProjectCategory from '../types/projectCategory';
@@ -38,10 +29,23 @@ export default {
 	components: {
 		ProjectCard,
 		BaseInput,
+		BaseSelect,
+		ProjectListFilter,
 	},
 	setup(){
-		const data = reactive({
-			search: "",
+		const data = reactive<{
+			filters: {
+				search: string,
+				categories: Array<{
+					title: string,
+					value: number,
+				}>|null
+			} 
+		}>({
+			filters: {
+				search: "",
+				categories: null,
+			}
 		})
 
 		let projects:Array<Project> = []
@@ -77,9 +81,6 @@ export default {
 	box-sizing: border-box;
 }
 
-.project-list__filters{
-	box-sizing: border-box;
-}
 
 .project-list__content{
 	display: grid;
@@ -87,21 +88,23 @@ export default {
 	gap: 16px;
 }
 
-
-
 .filter-search{
-	max-width: 170px;
+	width: 170px;
+}
+
+@media (max-width: 768px){
+	.project-list__header, 
+	.project-list__filters{
+		width: 100%;
+		padding: 0 16px;
+	}
 }
 
 @media (max-width: 480px) {
 	.project-list__content{
 		grid-template-columns: 1fr;
 	}
-	.project-list__header, 
-	.project-list__filters{
-		width: 100%;
-		padding: 0 16px;
-	}
+
 }
 
 @media (min-width: 480px) {

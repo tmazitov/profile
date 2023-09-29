@@ -36,6 +36,7 @@ export default {
 	.content > *{
 		margin: 0 16px;
 		width: auto;
+		box-sizing: border-box;
 	}
 }
 @media (min-width: 768px) {

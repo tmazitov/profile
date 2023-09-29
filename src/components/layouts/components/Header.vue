@@ -92,7 +92,8 @@ export default {
     position: sticky;
     background: #1a1a1a;
     top: 0;
-        
+    z-index: 3;
+
     display: flex;
     justify-content: space-between;
     flex-direction: row;

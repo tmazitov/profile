@@ -11,9 +11,10 @@
 		</div>
 
 		<div class="project__categories">
-			<Category :title="category.name" :color="category.color"
-					v-for="category in project.categories" 
-					:key="`category__${category.id}`"/>
+			<Category 
+			:title="category.name" :color="category.color"
+			v-for="category in project.categories" 
+			:key="`category__${category.id}`"/>
 		</div>
 
 		<div class="project__description">

@@ -24,11 +24,12 @@
 			@blur="isFocused = false">
 
 		<div class="right icon" 
-		v-if="rightIcon && !rightIcon.isHidden" 
+		v-if="rightIcon"
+
 		v-bind:class="{
 			'is-button' : rightIcon.onClick
 		}">
-			<Icon
+			<Icon v-show="!rightIcon.isHidden"
 				:icon="rightIcon.name" 
 				:width="rightIcon.width" 
 				:height="rightIcon.height" 
@@ -95,11 +96,17 @@ export default  {
 	background: #242424;
 	border: 1px solid #2d2d2d;
 	border-radius: 6px;
-	height: fit-content;
-	padding: 0 8px;
+	box-sizing: border-box;
 	transition: box-shadow .15s;
+	font-size: 15px;
+	padding: 7px 11px;
+	height: 36px;
 }
 
+.icon{
+	height: 21px;
+	width: 21px;
+}
 .icon.is-button{
 	cursor: pointer;
 	user-select: none;
@@ -118,8 +125,11 @@ export default  {
 input{
 	border: none;
 	background: none;
-	padding: 8px 0;
+	padding: 0;
 	width: 100%;
+	line-height: 21px;
+	font-size: 14px;
+	height: 21px;
 }
 
 input:focus{

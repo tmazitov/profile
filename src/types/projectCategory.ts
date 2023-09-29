@@ -8,6 +8,13 @@ class ProjectCategory{
 		this.name = name
 		this.color = color		
 	}
+
+	toSelectableItem(){
+		return {
+			title: this.name,
+			value: this.id,
+		}
+	}
 }
 
 export default ProjectCategory

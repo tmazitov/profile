@@ -1,6 +1,6 @@
 <template>
 	<div class="project-list__header">
-		My Projects
+		Projects
 	</div>
 
 	<ProjectListFilter
@@ -86,10 +86,17 @@ export default {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 16px;
+	margin-bottom: 120px;
 }
 
 .filter-search{
 	width: 170px;
+}
+
+@media (min-width: 1200px) {
+	.project-list__content{
+		grid-template-columns: 1fr 1fr 1fr;
+	}
 }
 
 @media (max-width: 768px){
@@ -97,6 +104,10 @@ export default {
 	.project-list__filters{
 		width: 100%;
 		padding: 0 16px;
+	}
+
+	.project-list__content{
+		grid-template-columns: 1fr 1fr;
 	}
 }
 

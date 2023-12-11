@@ -20,11 +20,18 @@ export default {
 
 <style>
 
+.main__layout{
+	height: 100vh;
+	overflow: hidden;
+}
+
 .content{
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	height: 100%;
+	overflow-y: auto;
 	gap: 24px;
 }
 

@@ -72,6 +72,7 @@ export default {
         let router = useRouter()
         let sideBarIsOpen = ref(false)
         const goToPage = (pageName: string) => {
+			document.querySelector(".main__layout")?.scrollTo({left:0,top:0})
             router.push({name: pageName})
             sideBarIsOpen.value = false
         }

@@ -21,8 +21,8 @@ export default {
 <style>
 
 .main__layout{
-	min-height: 100vh;
-	overflow: hidden;
+	height: 100vh;
+	overflow: auto;
 }
 
 .content{
@@ -30,7 +30,6 @@ export default {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 100%;
 	overflow-y: auto;
 	gap: 24px;
 }

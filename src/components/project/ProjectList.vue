@@ -47,6 +47,7 @@ export default {
 	grid-template-columns: repeat(3, 1fr);
 	grid-column-gap: 16px;
 	grid-row-gap: 16px;
+
 }
 
 @media (max-width: 1024px) {
@@ -56,7 +57,8 @@ export default {
 }
 @media (max-width: 480px) {
 	.project__list{
-		grid-template-columns: repeat(1, 1fr);
+		grid-template-columns: none;
+		grid-template-rows: repeat(1, 1fr);
 	}
 }
 </style>

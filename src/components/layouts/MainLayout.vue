@@ -21,7 +21,7 @@ export default {
 <style>
 
 .main__layout{
-	height: 100vh;
+	min-height: 100vh;
 	overflow: hidden;
 }
 

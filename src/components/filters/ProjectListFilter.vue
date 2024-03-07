@@ -23,7 +23,8 @@
 
 			<div class="project-list-filter__desktop-content">
 				<BaseSelect 
-				v-model="filters.categories" :items="selectableItems"
+				v-model="filters.selectedCategories" 
+				:items="selectableItems"
 				placeholder="Select categories" multiselect/>
 			</div>
 		</div>
@@ -41,8 +42,8 @@
 					</div>
 				</div>
 				<div class="filter__items">
-					<BaseSelect 
-					v-model="filters.categories" :items="selectableItems"
+					<BaseSelect
+					v-model="filters.selectedCategories" :items="selectableItems"
 					placeholder="Select categories" multiselect/>
 				</div>
 			</div>
@@ -57,14 +58,8 @@ import BaseInput from '../inputs/BaseInput.vue'
 import BottomModal from '../modals/BottomModal.vue'
 import { Icon } from '@iconify/vue/dist/iconify.js';
 
-import SelectableItem from '../../types/selectableItem';
 import { computed, ref } from 'vue';
-import ProjectCategory from '../../types/projectCategory';
-
-export interface ProjectListFilters {
-	categories:	Array<SelectableItem>|null
-	search: 	string
-}
+import ProjectListFiltersInst from '../../types/projectListFilters';
 
 export default {
 	name: "ProjectListFilter",
@@ -76,22 +71,15 @@ export default {
 		Icon,
 	},
 	props: {
-		modelValue: {
-			type: Object as () => ProjectListFilters,
+		filters: {
+			type: ProjectListFiltersInst,
 			required: true,
 		},
 	},
 	setup(props) {
-		let selectableItems = [
-			new ProjectCategory(1, "TS", "#3178c6"),
-			new ProjectCategory(2, "Vue", "#41B883"),
-			new ProjectCategory(3, "Frontend", "#5CB3FF"),			
-			new ProjectCategory(4, "TS", "#3178c6"),
-			new ProjectCategory(5, "Vue", "#41B883"),
-			new ProjectCategory(6, "Frontend", "#5CB3FF"),
-		].map(category => category.toSelectableItem())
+		let selectableItems = computed(() => props.filters.categories)
 
-		let filters = computed(() => props.modelValue)
+		let filters = computed(() => props.filters)
 		let isOpen = ref(false)
 
 		return {

@@ -4,7 +4,7 @@
 	</div>
 
 	<ProjectListFilter
-		v-model="data.filters"
+		v-model:filters="filters"
 	/>
 
 	<div class="project-list__content">
@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { reactive } from 'vue';
+import { reactive, watch } from 'vue';
 import ProjectCard from '../components/project/ProjectCard.vue';
 import BaseInput from '../components/inputs/BaseInput.vue';
 import BaseSelect from '../components/inputs/BaseSelect.vue';
@@ -24,6 +24,8 @@ import ProjectListFilter from '../components/filters/ProjectListFilter.vue';
 
 import Project from '../types/project';
 import ProjectCategory from '../types/projectCategory';
+import ProjectListFiltersInst from '../types/projectListFilters';
+import { useRoute, useRouter } from 'vue-router';
 export default {
 	name: "ProjectList",
 	components: {
@@ -33,20 +35,30 @@ export default {
 		ProjectListFilter,
 	},
 	setup(){
-		const data = reactive<{
-			filters: {
-				search: string,
-				categories: Array<{
-					title: string,
-					value: number,
-				}>|null
-			} 
-		}>({
-			filters: {
-				search: "",
-				categories: null,
-			}
-		})
+		const route = useRoute()
+		const router = useRouter()
+		const filters = reactive(new ProjectListFiltersInst())
+		filters.setupSearch(route.query.s?.toString())
+		filters.setupCategories([
+			new ProjectCategory(1, "TS", "#3178c6").toSelectableItem(),
+			new ProjectCategory(2, "Vue", "#41B883").toSelectableItem(),
+			new ProjectCategory(3, "Frontend", "#5CB3FF").toSelectableItem(),
+		])
+		filters.setupSelectedCategories(route.query.ct)
+
+		watch(() => filters.search, (_) => {
+			router.replace({
+				name: "ProjectList",
+				query: filters.toQuery(),
+			})
+		}, {deep: true})
+
+		watch(() => filters.selectedCategories, (_) => {
+			router.replace({
+				name: "ProjectList",
+				query: filters.toQuery(),
+			})
+		}, {deep: true})	
 
 		let projects:Array<Project> = []
 		for (let i = 0; i < 6; i++)
@@ -66,7 +78,7 @@ export default {
 		}
 		return {
 			projects,
-			data,
+			filters,
 		}
 	}	
 }

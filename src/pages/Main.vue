@@ -15,6 +15,13 @@
 		</div>
 	</div>
 
+	<div class="skills__container">
+		<SkillCard v-for="skill in skills" 
+			:key="`skill_${skill.id}`"
+			:skill="skill"
+			:isOpen="openedSkill == skill.id"/>
+	</div>
+
 	<div class="projects__container">
 		<div class="projects__header">
 			<div class="projects__title">Last projects</div>
@@ -29,26 +36,47 @@
 
 <script lang="ts">
 import { useRouter } from 'vue-router';
+import SkillCard from '../components/skill/SkillCard.vue'
 import BaseButton from '../components/inputs/BaseButton.vue';
 import ProjectList from '../components/project/ProjectList.vue';
+import Skill from '../types/skill';
+import { ref } from 'vue';
 
 export default {
 	name: "MainPage",
 	components: {
 		BaseButton,
+		SkillCard,
 		ProjectList,
 	},
 	setup(){
 		const router = useRouter()
 		const goToPage = (name: string) => router.push({name})
+		const skills:Array<Skill> = [
+			new Skill(1, "golang", "https://go.dev/blog/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg"),
+			new Skill(2, "javascript", "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/512px-Unofficial_JavaScript_logo_2.svg.png?20141107110902"),
+			new Skill(3, "typescript", "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Typescript.svg/2048px-Typescript.svg.png"),
+			new Skill(3, "vue", "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/768px-Vue.js_Logo_2.svg.png"),
+		]
+		const openedSkill = ref(0)
+
 		return {
 			goToPage,
+			skills,
+			openedSkill,
 		}
 	}
 }
 </script>
 
 <style>
+
+.skills__container{
+	display: flex;
+	flex-direction: row;
+	gap: 16px;
+}
+
 .greetings__container{
 	margin-top: 32px;
 	display: flex;

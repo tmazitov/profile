@@ -99,10 +99,9 @@ export default {
 			}
 			else if (isSelectableArray(current)){
 				current = <Array<SelectableItem>>current
-				if (current.length == 1)
-					return current[0].title
-				else if (current.length > 1)
-					return `${current[0].title} + ${current.length - 1}`
+				return current
+					.map(item => item.title)
+					.join(', ')
 			}
 			return null
 		}
@@ -210,6 +209,9 @@ export default {
 .field_title{
 	width: 100%;
 	justify-content: flex-start;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .field_title.empty{

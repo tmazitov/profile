@@ -25,7 +25,9 @@
 				<BaseSelect 
 				v-model="filters.selectedCategories" 
 				:items="selectableItems"
-				placeholder="Select categories" multiselect/>
+				placeholder="Select categories" multiselect
+				style="max-width: 150px;"
+				/>
 			</div>
 		</div>
 

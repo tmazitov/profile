@@ -26,6 +26,7 @@ import Project from '../types/project';
 import ProjectCategory from '../types/projectCategory';
 import ProjectListFiltersInst from '../types/projectListFilters';
 import { useRoute, useRouter } from 'vue-router';
+
 export default {
 	name: "ProjectList",
 	components: {
@@ -43,6 +44,7 @@ export default {
 			new ProjectCategory(1, "TS", "#3178c6").toSelectableItem(),
 			new ProjectCategory(2, "Vue", "#41B883").toSelectableItem(),
 			new ProjectCategory(3, "Frontend", "#5CB3FF").toSelectableItem(),
+			new ProjectCategory(4, "Math", "#A62F20").toSelectableItem(),
 		])
 		filters.setupSelectedCategories(route.query.ct)
 

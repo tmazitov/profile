@@ -31,7 +31,7 @@
 			</div>
 		</div>
 
-		<BottomModal :show="isOpen">
+		<BottomModal v-model:show="isOpen">
 			<div class="filter-inner">
 				<div class="filter__header">
 					<div class="filter-header__icon">

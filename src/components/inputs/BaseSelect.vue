@@ -1,5 +1,5 @@
 <template>
-	<div class="base-select">
+	<div class="base-select" v-click-outside="closeHandler">
 		<div class="base-select__field" @click="isOpen = !isOpen">
 			<div class="field_title" v-if="getSelectTitle()">
 				{{ getSelectTitle() }}
@@ -58,6 +58,8 @@ function isSelectableArray(obj:Object){
 	})
 	return !Boolean(nonSelectable)
 }
+
+
 
 
 export default {
@@ -157,6 +159,10 @@ export default {
 			isOpen.value = !isOpen.value
 		}
 
+		const closeHandler = () => {
+			isOpen.value = false
+		}
+
 		return {
 			items,
 			model,
@@ -164,6 +170,7 @@ export default {
 			checkItem,
 			placeholder: props.placeholder,
 			updateValue,
+			closeHandler,
 			getSelectTitle,
 		}
 	},

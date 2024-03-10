@@ -129,11 +129,12 @@ export default {
 	text-decoration: underline;
 	font-size: 16px;
 	cursor: pointer;
-	color: #868686;
+	color: var(--text-color-light);
 	user-select: none;
+	transition: color .3s;
 }
 .projects__button:hover{
-	color: #aaaaaa;
+	color: var(--text-color-hover);
 }
 
 </style>

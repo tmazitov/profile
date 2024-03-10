@@ -111,7 +111,7 @@ export default {
 }
 
 .project__submit-date{
-	color: #868686;
+	color: var(--text-color-light);
 	cursor: pointer;
 	font-size: 14px;
 }

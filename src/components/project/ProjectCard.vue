@@ -61,8 +61,8 @@ export default {
 
 <style scoped>
 .project{
-	background: #242424;
-	border: 1px solid #2d2d2d;
+	background: var(--card-background-color);
+	border: 1px solid var(--border-color);
 	border-radius: 16px;
 	font-size: 14px;
 
@@ -113,7 +113,7 @@ export default {
 }
 
 .project__submit-date{
-	color: #868686;
+	color: var(--text-color-light);
 	cursor: pointer;
 }
 
@@ -121,12 +121,13 @@ export default {
 	text-decoration: underline;
 	padding: 0 10px;
 	cursor: pointer;
-	color: #868686;
+	color: var(--text-color-light);
 	user-select: none;
+	transition: color .3s;
 }
 
 .project__button:hover{
-	color: #aaaaaa;
+	color: var(--text-color-hover);
 }
 
 .project__image {

@@ -40,7 +40,7 @@ export default {
 
 @media (max-width: 768px) {
 	.content > *{
-		margin: 0 16px;
+		padding: 0 16px;
 		width: auto;
 		box-sizing: border-box;
 	}

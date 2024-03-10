@@ -1,8 +1,8 @@
 <template>
 	<div class="menu__container">
 		<div class="menu__button" @click="toggleOpen">
-			<Icon v-if="!isOpen" icon="tabler:menu-2" width="28" height="28" />
-			<Icon v-else icon="tabler:x" width="28" height="28" />
+			<Icon v-if="!isOpen" icon="tabler:menu-2" width="24" height="24" />
+			<Icon v-else icon="tabler:x" width="20" height="20" />
 		</div>
 		<transition name="show">
 			<div class="menu__content" v-if="isOpen">
@@ -45,6 +45,7 @@ export default {
 </script>
 
 <style scoped>
+
 .menu__container{
 	height: 100%;
 }
@@ -52,7 +53,9 @@ export default {
 .menu__button{
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	height: inherit;
+	width: 24px;
 }
 
 .menu__content{
@@ -61,8 +64,8 @@ export default {
 	position: absolute;
 	right: 0;
 	top: 56px;
-	background: #1a1a1a;
-	border-left: 1px solid #2d2d2d;
+	background: var(--background-color);
+	border-left: 1px solid var(--border-color);
 	overflow-x: hidden;
 }
 

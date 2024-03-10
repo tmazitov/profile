@@ -84,8 +84,8 @@ export default {
 
 	box-sizing: border-box;
 
-	background: #1a1a1a;
-	border-top: 1px solid #2d2d2d;
+	background: var(--background-color);
+	border-top: 1px solid var(--border-color);
 	border-radius: 6px 6px 0 0 ;
 
 	height: 400px;

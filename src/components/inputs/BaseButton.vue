@@ -24,7 +24,7 @@ export default {
 
 <style scoped>
 .base__button{
-	background: #2f2f2f;
+	background: var(--button-background);
 	padding: 8px 18px;
 	border-radius: 8px;
 	cursor: pointer;
@@ -34,14 +34,14 @@ export default {
 }
 
 .base__button:hover{
-	background: #3a3a3a;
+	background: var(--button-background-hover);
 }
 
 .base__button.primary{
-	background: #509bdc;
+	background: var(--primary-color);
 }
 
 .base__button.primary:hover{
-	background: #57A8F0;
+	background: var(--primary-color-hover);
 }
 </style>

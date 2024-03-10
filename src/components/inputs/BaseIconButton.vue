@@ -1,6 +1,6 @@
 <template>
 	<div class="base-icon-button">
-		<Icon :icon="icon" :color="color" height="18px" width="18px"/> 
+		<Icon :icon="icon" color="var(--text-color)" height="18px" width="18px"/> 
 	</div>
 </template>
 
@@ -42,15 +42,19 @@ export default {
 	height: 36px;
 	width: 36px;
 
-	background: #242424;
-	border: 1px solid #2d2d2d;
+	background: var(--button-background);
+	border: 1px solid var(--border-color);
 	border-radius: 6px;
 
 	cursor: pointer;
 	transition: background .15s;
 }
 
-.base-icon-button:active{
-	background: #2d2d2d;
+.base-icon-button:hover{
+	background: var(--button-background-hover);
+}
+
+.base-icon-button:hover{
+	background: var(--button-background-hover);
 }
 </style>

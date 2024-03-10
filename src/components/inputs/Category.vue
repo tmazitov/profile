@@ -39,7 +39,7 @@ export default {
 <style scoped>
 .category{
 	padding: 3px 9px;
-	border: 1px solid #2d2d2d;
+	border: 1px solid var(--border-color);
 	border-radius: 6px;
 	width: fit-content;
 	cursor: pointer;

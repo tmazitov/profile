@@ -11,7 +11,7 @@
 			<div class="field_selector" v-bind:class="{
 				'is-open': isOpen,
 			}">
-				<Icon icon="tabler:chevron-down" color="#ffffff" height="16px" width="16px"/>
+				<Icon icon="tabler:chevron-down" color="var(--text-color)" height="16px" width="16px"/>
 			</div>
 		</div>
 		<transition name="show">
@@ -22,7 +22,7 @@
 						<Icon icon="tabler:circle" 
 						height="15px" width="15px"
 						:color="checkItem(item) ? 
-							'#5CB3FF' :
+							'var(--primary-color-hover)' :
 							'#626262'"/>
 					</div>
 					<div class="item__title">
@@ -192,8 +192,8 @@ export default {
 	padding: 7px 11px;
 
 	align-items: center;
-	background: #242424;
-	border: 1px solid #2d2d2d;
+	background: var(--input-background-color);
+	border: 1px solid var(--border-color);
 	border-radius: 6px;
 	width: 100%;
 	box-sizing: border-box;
@@ -231,8 +231,8 @@ export default {
 	box-sizing: border-box;
 	width: 100%;
 
-	background: #242424;
-	border: 1px solid #2d2d2d;
+	background: var(--input-background-color);
+	border: 1px solid var(--border-color);
 	border-radius: 6px;
 
 	display: flex;
@@ -252,7 +252,7 @@ export default {
 }
 
 .select__item + .select__item {
-	border-top: 1px solid #2d2d2d;
+	border-top: 1px solid var(--border-color);
 }
 
 .select__item > *{

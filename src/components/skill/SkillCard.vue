@@ -36,7 +36,7 @@ export default {
 .skill_card{
 	height: 46px;
 	width: 46px;
-	border: 1px solid #2d2d2d;
+	border: 1px solid var(--border-color);
 	border-radius: 8px;
 	overflow: hidden;
 }

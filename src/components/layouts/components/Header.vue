@@ -85,13 +85,15 @@ export default {
 </script>
 
 <style>
+@import url("../../../assets/theme.css");
+
 .header__component{
     height: 56px;
     width: calc(100% - 64px);
     border-bottom: 1px solid;
-    border-color: #2d2d2d;
+    border-color: var(--border-color);
     position: sticky;
-    background: #1a1a1a;
+    background: var(--background-color);
     top: 0;
     z-index: 3;
 
@@ -110,7 +112,7 @@ export default {
 }
 
 .header__item:hover{
-    color: #5CB3FF;
+    color: var(--primary-color-hover);
     text-shadow: none;
 }
 

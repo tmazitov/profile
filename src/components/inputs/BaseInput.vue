@@ -93,8 +93,8 @@ export default  {
 	flex-direction: row;
 	gap: 8px;
 
-	background: #242424;
-	border: 1px solid #2d2d2d;
+	background: var(--input-background-color);
+	border: 1px solid var(--border-color);
 	border-radius: 6px;
 	box-sizing: border-box;
 	transition: box-shadow .15s;
@@ -119,7 +119,7 @@ export default  {
 
 .base-input.focused{
 	border-color: #353535;
-	box-shadow: 0 0 1px 1px #5CB3FF9f;
+	box-shadow: 0 0 1px 1px var(--primary-color-hover);
 }
 
 input{

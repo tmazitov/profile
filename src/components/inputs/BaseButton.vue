@@ -1,6 +1,7 @@
 <template>
 	<div class="base__button" v-bind:class="{
-		primary: primary 
+		primary: primary,
+		centered: centered,
 	}">
 		{{ title }}
 	</div>
@@ -12,6 +13,7 @@ export default {
 	props: {
 		title: String,
 		primary: Boolean,
+		centered: Boolean,
 	},
 	setup(props:any) {
 		return {
@@ -39,6 +41,10 @@ export default {
 
 .base__button.primary{
 	background: var(--primary-color);
+}
+
+.base__button.centered{
+	text-align: center;
 }
 
 .base__button.primary:hover{

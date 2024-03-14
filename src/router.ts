@@ -18,7 +18,12 @@ const routes = [
         path: '/project',
         name: 'ProjectList',
         component: ProjectList,
-    }
+    },
+	{
+		path: '/auth',
+		name: "Auth",
+		component: () => import('./pages/Auth.vue'),
+	}
 ]
 const router = createRouter({
     history: createWebHistory(),

@@ -43,7 +43,6 @@ export default {
 	width: 36px;
 
 	background: var(--button-background);
-	border: 1px solid var(--border-color);
 	border-radius: 6px;
 
 	cursor: pointer;

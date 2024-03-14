@@ -2,6 +2,9 @@
 	<div class="base-input" v-bind:class="{
 		focused: isFocused,
 	}">
+		<div class="label" v-if="label">
+			{{label}}
+		</div>
 		<div class="left icon" 
 		v-if="leftIcon && !leftIcon.isHidden" 
 		v-bind:class="{
@@ -61,6 +64,7 @@ export default  {
 		placeholder: String,
 		rightIcon: 	Object as () => IconT,
 		leftIcon: 	Object as () => IconT,
+		label: String,
 	},
 	modal: {
 		prop: 'value',
@@ -71,6 +75,7 @@ export default  {
 		let	rightIcon = computed(() => props.rightIcon)
 		let	leftIcon = computed(() => props.leftIcon)
 		let computedValue = computed(() => props.value)
+		let label = computed(() => props.label)
 		let updateValue = (ev: any) => {
 			ctx.emit('update:value', ev.target["value"])
 		}
@@ -82,6 +87,7 @@ export default  {
 			updateValue,
 			placeholder: props.placeholder,
 			value: computedValue,
+			label: label,
 		}
 	}
 }
@@ -112,6 +118,10 @@ export default  {
 	user-select: none;
 }
 
+.base-input {
+	position: relative;
+}
+
 .base-input > * {
 	display: flex;
 	align-items: center;
@@ -120,6 +130,14 @@ export default  {
 .base-input.focused{
 	border-color: #353535;
 	box-shadow: 0 0 1px 1px var(--primary-color-hover);
+}
+
+.label {
+	position: absolute;
+	left: 0;
+	top: -24px;
+	font-size: 13px;
+	font-weight: 300;
 }
 
 input{

@@ -2,26 +2,28 @@
 	<div class="base__button" v-bind:class="{
 		primary: primary,
 		centered: centered,
+		outlined: outlined,
 	}">
-		{{ title }}
+		<div class="base__button-icon" v-if="icon">
+			<Icon :icon="icon" color="var(--text-color)" height="18px" width="18px"/> 
+		</div>
+		<div class="base__button-title">
+			{{ title }}
+		</div>
 	</div>
 </template>
 
-<script lang="ts">
-export default {
-	name: "BaseButton",
-	props: {
-		title: String,
-		primary: Boolean,
-		centered: Boolean,
-	},
-	setup(props:any) {
-		return {
-			title: props.title,
-			primary: props.primary,
-		}
-	},
-}
+<script lang="ts" setup>
+import { Icon } from '@iconify/vue/dist/iconify.js';
+import { defineProps } from 'vue'
+
+defineProps({
+	title: String,
+	icon: String,
+	primary: Boolean,
+	centered: Boolean,
+	outlined: Boolean,
+})
 </script>
 
 <style scoped>
@@ -33,6 +35,9 @@ export default {
 	user-select: none;
 	transition: background .3s;
 	font-weight: 500;
+
+	display: flex;
+	gap: 12px;
 }
 
 .base__button:hover{
@@ -50,4 +55,23 @@ export default {
 .base__button.primary:hover{
 	background: var(--primary-color-hover);
 }
+
+.base__button.outlined{
+	background: transparent;
+	transition: outline .3s;
+
+	outline: 1.5px solid var(--button-background);
+}
+
+.base__button.outlined:hover{
+	outline: 1.5px solid var(--button-background-hover);
+	background: var(--button-background-hover);
+}
+
+.base__button-icon{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 </style>

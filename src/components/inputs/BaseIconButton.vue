@@ -4,34 +4,15 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { Icon } from '@iconify/vue/dist/iconify.js';
-import { computed } from 'vue';
 
-export default {
-	name: "BaseIconButton",
-	components: {
-		Icon,
+defineProps({
+	icon: {
+		type: String,
+		required: true,
 	},
-	props: {
-		icon: {
-			type: String,
-			required: true,
-		},
-		color: {
-			type: String,
-			default: "#FFFFFF"
-		}
-	},
-	setup(props){
-		let icon = computed(() => props.icon)
-
-		return {
-			icon,
-			color: props.color,
-		}
-	}
-}
+})
 </script>
 
 <style  scoped>

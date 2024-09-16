@@ -12,8 +12,9 @@
 	--text-color-light: #868686;
 	--text-color-hover: #aaaaaa;
 
-	--primary-color: #2e6392;
-	--primary-color-hover: #3878af;
+	--primary-color: #5aa7eb;
+	--primary-color-hover: #549bd8;
+
 }
 
 @media (prefers-color-scheme: light) {
@@ -31,8 +32,7 @@
 		--text-color-light: #ff8989;
 		--text-color-hover: #aaaaaa;
 	
-		--primary-color: #2e6392;
-		--primary-color-hover: #3878af;
+
 		
 		--button-background-hover: #dfdfdf;
 	}

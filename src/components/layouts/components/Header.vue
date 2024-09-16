@@ -1,6 +1,6 @@
 <template>
-    <div class="header__component">
-        <div class="header__item logo" @click="goToPage('Home')">My Dev Journey</div>
+    <div class="header">
+        <div class="header__item logo" @click="goToPage('Home')">Timur Mazitov</div>
         <div class="header__section">
             <div class="header__item" @click="goToPage('Home')">Home</div>
             <div class="header__item" @click="goToPage('ProjectList')">Projects</div>
@@ -14,41 +14,13 @@
         <div class="header__menu">
             <SideMenu v-model:is-open="sideBarIsOpen">
                 <div class="side-menu__list">
-                    <div class="side-menu__item" @click="goToPage('Home')">
+                    <div class="side-menu__item" 
+					v-for="item, index in menuItems"
+					:key="`side-menu__${index}`" @click="goToPage(item.pageName)">
                         <div class="side-menu__item-icon">
-                            <Icon icon="tabler:home-2" width="24" height="24" />
+                            <Icon :icon="item.icon" width="24" height="24" />
                         </div>
-                        <div class="side-menu__item-title">Home</div>
-                    </div>
-                    <div class="side-menu__item" @click="goToPage('ProjectList')">
-                        <div class="side-menu__item-icon">
-                            <Icon icon="tabler:briefcase" width="24" height="24" />
-                        </div>
-                        <div class="side-menu__item-title">Projects</div>
-                    </div>
-                    <div class="side-menu__item">
-                        <div class="side-menu__item-icon">
-                            <Icon icon="tabler:article" width="24" height="24" />
-                        </div>  
-                        <div class="side-menu__item-title">Articles</div>
-                    </div>
-                    <div class="side-menu__item">
-                        <div class="side-menu__item-icon">
-                            <Icon icon="tabler:archive" width="24" height="24" />
-                        </div>
-                        <div class="side-menu__item-title">Library</div>
-                    </div>
-                    <div class="side-menu__item">
-                        <div class="side-menu__item-icon">
-                            <Icon icon="tabler:brand-github" width="24" height="24" />
-                        </div>
-                        <div class="side-menu__item-title">Github</div>
-                    </div>
-                    <div class="side-menu__item">
-                        <div class="side-menu__item-icon">
-                            <Icon icon="tabler:brand-linkedin" width="24" height="24" />
-                        </div>
-                        <div class="side-menu__item-title">LinkedIn</div>
+                        <div class="side-menu__item-title">{{ item.title }}</div>
                     </div>
                 </div>
             </SideMenu>
@@ -56,46 +28,53 @@
     </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import SideMenu from './menu/SideMenu.vue'
 import {Icon} from '@iconify/vue'
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
 
-export default {
-    name: "Header",
-    components: {
-        SideMenu,
-        Icon,
-    },
-    setup(){
-        let router = useRouter()
-        let sideBarIsOpen = ref(false)
-        const goToPage = (pageName: string) => {
-			document.querySelector(".main__layout")?.scrollTo({left:0,top:0})
-            router.push({name: pageName})
-            sideBarIsOpen.value = false
-        }
-        return {
-            goToPage,
-            sideBarIsOpen,
-        }
-    }
+const router = useRouter()
+const sideBarIsOpen = ref(false)
+
+type MenuItem = {
+	title: string
+	icon: string
+	pageName: string|undefined
+}
+
+const menuItems:Array<MenuItem> = [
+	{title: "Home", icon: "tabler:home-2", pageName: "Home"},
+	{title: "Projects", icon: "tabler:briefcase", pageName: "ProjectList"},
+	{title: "Articles", icon: "tabler:article", pageName: undefined},
+	{title: "Library", icon: "tabler:archive", pageName: undefined},
+	{title: "Github", icon: "tabler:brand-github", pageName: undefined},
+	{title: "LinkedIn", icon: "tabler:brand-linkedin", pageName: undefined},
+]
+
+const goToPage = (pageName: string|undefined) => {
+	const mainLayout = document.querySelector(".main__layout")
+	if (mainLayout){
+		mainLayout.scrollTo({left:0,top:0})
+	} 
+	router.push({name: pageName})
+	sideBarIsOpen.value = false
 }
 </script>
 
 <style>
 @import url("../../../assets/theme.css");
 
-.header__component{
+.header{
     height: 56px;
-    width: calc(100% - 64px);
     border-bottom: 1px solid;
     border-color: var(--border-color);
-    position: sticky;
     background: var(--background-color);
+    position: sticky;
     top: 0;
-    z-index: 3;
+	left: 0;
+	right: 0;
+	z-index: 3;
 
     display: flex;
     justify-content: space-between;
@@ -131,6 +110,9 @@ export default {
 }
 
 @media (max-width: 768px) {
+	.header{
+		padding: 0 24px;
+	}
 	.header__section{
 		display: none;
 	}

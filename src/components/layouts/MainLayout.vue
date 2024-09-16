@@ -1,53 +1,40 @@
 <template>
-    <div class="main__layout">
+    <div class="main-layout">
         <Header></Header>
-        <div class="content">
+        <div class="main-layout__content">
             <slot></slot>
         </div>
     </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import Header from './components/Header.vue';
 
-export default {
-    name: "MainLayout",
-    components: {
-        Header,
-    }
-}
 </script>
 
-<style>
+<style scoped>
 
-.main__layout{
-	height: 100vh;
-	overflow: auto;
+.main-layout{
+	position: relative;
 }
 
-.content{
+.main-layout__content{
 	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	overflow-y: auto;
-	gap: 24px;
-}
-
-.content > * {
-	width: 60%;
+	height: 100%;
+	overflow: hidden;
+	box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
-	.content > *{
-		padding: 0 16px;
-		width: auto;
-		box-sizing: border-box;
+	.main-layout__content{
+		padding-left: 24px;
+		padding-right: 24px;
 	}
 }
 @media (min-width: 768px) {
-	.content > *{
-		margin: 0 32px; 
+	.main-layout__content {
+		padding-left: 32px;
+		padding-right: 32px;
 	}
 }
 </style>

@@ -15,6 +15,8 @@ import MainLayout from './components/layouts/MainLayout.vue';
 
 	let route = useRoute()
 	let isPageWithoutLayout = () => {
+		if (!route.name)
+			return true
 		return pagesWithoutLayout.includes(route.name as string)
 	}
 

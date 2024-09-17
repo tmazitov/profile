@@ -1,16 +1,36 @@
 <template>
     <div class="header">
-        <div class="header__item logo" @click="goToPage('Home')">Timur Mazitov</div>
+        
+		<!-- Logo -->
+
+		<div class="header__item logo" @click="goToPage('home')">
+			Timur Mazitov
+		</div>
+
+		<!-- Header center section -->
+
         <div class="header__section">
-            <div class="header__item" @click="goToPage('Home')">Home</div>
-            <div class="header__item" @click="goToPage('ProjectList')">Projects</div>
-            <div class="header__item">Articles</div>
-            <div class="header__item">Library</div>
+            <div class="header__item" 
+			v-for="item, index in menuFirstPart()"
+			:key="`menu-first-part__item-${index}`"
+			@click="goToPage(item.pageName)">
+				{{ item.title }}
+			</div>
         </div>
+
+		<!-- Header end section -->
+
         <div class="header__section">
-            <div class="header__item">Github</div>
-            <div class="header__item">LinkedIn</div>
+            <div class="header__item" 
+			v-for="item, index in menuSecondPart()"
+			:key="`menu-second-part__item-${index}`"
+			@click="goToPage(item.pageName)">
+				{{ item.title }}
+			</div>
         </div>
+
+		<!-- Menu for mobile -->
+
         <div class="header__menu">
             <SideMenu v-model:is-open="sideBarIsOpen">
                 <div class="side-menu__list">
@@ -44,15 +64,21 @@ type MenuItem = {
 }
 
 const menuItems:Array<MenuItem> = [
-	{title: "Home", icon: "tabler:home-2", pageName: "Home"},
-	{title: "Projects", icon: "tabler:briefcase", pageName: "ProjectList"},
+	{title: "Home", icon: "tabler:home-2", pageName: "home"},
+	{title: "Projects", icon: "tabler:briefcase", pageName: "project-list"},
 	{title: "Articles", icon: "tabler:article", pageName: undefined},
 	{title: "Library", icon: "tabler:archive", pageName: undefined},
 	{title: "Github", icon: "tabler:brand-github", pageName: undefined},
 	{title: "LinkedIn", icon: "tabler:brand-linkedin", pageName: undefined},
 ]
 
+const menuFirstPart = () => menuItems.slice(0, 4)
+const menuSecondPart = () => menuItems.slice(4, 6)
+
+
 const goToPage = (pageName: string|undefined) => {
+	if (!pageName)
+		return 
 	const mainLayout = document.querySelector(".main__layout")
 	if (mainLayout){
 		mainLayout.scrollTo({left:0,top:0})

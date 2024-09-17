@@ -12,15 +12,17 @@
 				<div>{{ item.periodEnd() }}</div>
 			</div>
 			<div class="timeline__item-separator">
-				<div class="separator-point"></div>
+				<div class="separator-point">
+					<div class="inner-circle"></div>
+				</div>
 				<div class="separator-line"></div>
 			</div>
 			<div class="timeline__item-value">
-				<div class="value-header">
+				<div class="value-header" @click="toggle(index)">
 					<div class="value-header__title">
 						{{ item.title }}
 					</div>
-					<div class="value-header__button" @click="toggle(index)">
+					<div class="value-header__button" >
 						<Icon v-show="index != open" icon="tabler:plus" height="20px" width="20px"/>
 						<Icon v-show="index == open" icon="tabler:minus" height="20px" width="20px"/>
 					</div>
@@ -87,6 +89,8 @@ onMounted(() => {
 	overflow: auto;
 }
 
+
+
 .timeline__item > .timeline__item-key{
 	font-size: 1.2em;
 	user-select: none;
@@ -137,12 +141,34 @@ onMounted(() => {
 	border: 1.5px solid white;
 	background: black;
 	z-index: 2;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: box-shadow .3s;
+}
+
+.separator-point > .inner-circle{
+	transition: background .3s;
+	height: 8px;
+	width: 8px;
+	border-radius: 50%;
+	background: black;
+}
+
+.timeline__item.opened .separator-point{
+	box-shadow: 0 0 8px var(--primary-color);
+}
+
+.timeline__item.opened .separator-point > .inner-circle {
+	background: var(--primary-color);
 }
 
 .value-header{
 	display: flex;
 	gap: 16px;
 	align-items: flex-start;
+	cursor: pointer;
 }
 
 .value-header__title{

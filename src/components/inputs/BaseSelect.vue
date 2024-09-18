@@ -1,6 +1,8 @@
 <template>
 	<div class="base-select" v-click-outside="closeHandler">
-		<div class="base-select__field" @click="isOpen = !isOpen">
+		<div class="base-select__field" @click="isOpen = !isOpen" v-bind:class="{
+			active: isOpen,
+		}">
 			<div class="field_title" v-if="getSelectTitle()">
 				{{ getSelectTitle() }}
 			</div>
@@ -16,6 +18,12 @@
 		</div>
 		<transition name="show">
 			<div class="base-select__select" v-if="isOpen">
+				<div class="search-container">
+					<BaseInput v-if="withSearch"
+						v-model:value="search"
+						placeholder="Search..."
+					/>
+				</div>
 				<div class="select__item" @click="updateValue(item)"
 				v-for="item in items" :key="`item-${item.title}`">
 					<div class="item__selector">
@@ -34,9 +42,10 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { Icon } from '@iconify/vue/dist/iconify.js';
-import { computed, ref, toRaw } from 'vue';
+import { computed, ref, toRaw, defineProps } from 'vue';
+import BaseInput from './BaseInput.vue';
 
 interface SelectableItem {
 	title: string
@@ -59,121 +68,112 @@ function isSelectableArray(obj:Object){
 	return !Boolean(nonSelectable)
 }
 
-
-
-
-export default {
-	name: "BaseSelect",
-	components: {
-		Icon,
+const props = defineProps({
+	modelValue: {
+		type: [
+			Object as () => SelectableItem, 
+			Object as () => null, 
+			Array<SelectableItem>
+		],
+		nullable: true,
+		validator: () => true,
 	},
-	props: {
-		modelValue: {
-			type: [
-				Object as () => SelectableItem, 
-				Object as () => null, 
-				Array<SelectableItem>
-			],
-			nullable: true,
-			validator: () => true,
-		},
-		items: {
-			type: Array<SelectableItem>,
-			required: true,
-		},
-		placeholder: {
-			type: String,
-			default: "Select..."
-		},
-		multiselect: Boolean,
+	items: {
+		type: Array<SelectableItem>,
+		required: true,
 	},
-	setup(props, ctx) {
-		const isOpen = ref(false)
-		const items = computed(() => props.items)
-		const model = computed(() => props.modelValue)
-		
-		const getSelectTitle = () => {
-			if (!props.modelValue) return null
+	placeholder: {
+		type: String,
+		default: "Select..."
+	},
+	withMultiselect: Boolean,
+	withSearch: Boolean,
+})
+
+const emits = defineEmits([
+	'update:modelValue',
+])
+
+const isOpen = ref(false)
+const search = ref('')
+const items = computed(() => {
+	if (props.withSearch && search.value){
+		return props.items.filter(item => {
+			return item.title.toLowerCase().includes(search.value.toLowerCase())
+		})
+	}
+	return props.items
+})
+const model = computed(() => props.modelValue)
+
+const getSelectTitle = () => {
+	if (!props.modelValue) return null
+	
+	let current = toRaw(props.modelValue)
+	if (isSelectableItem(current)){
+		return (<SelectableItem>current).title
+	}
+	else if (isSelectableArray(current)){
+		current = <Array<SelectableItem>>current
+		return current
+			.map(item => item.title)
+			.join(', ')
+	}
+	return null
+}
+
+const checkItem = (item:SelectableItem) => {
+	if (!model) return false
+	
+	let current = toRaw(props.modelValue)
+	if (current && isSelectableArray(current)){
+		return (<Array<SelectableItem>>current).includes(item)
+	}
+	else if (current && isSelectableItem(current)){
+		return (<SelectableItem>current).value == item.value
+	}
+	return 
+}
+const updateValue = (newValue:SelectableItem) => {
+	let current = toRaw(props.modelValue)
+	if (props.withMultiselect){
+		let newItems:Array<SelectableItem> = []
+		if (current && isSelectableArray(current)){
+			newItems = newItems.concat(current)
+			current = <Array<SelectableItem>>current
 			
-			let current = toRaw(props.modelValue)
-			if (isSelectableItem(current)){
-				return (<SelectableItem>current).title
-			}
-			else if (isSelectableArray(current)){
-				current = <Array<SelectableItem>>current
-				return current
-					.map(item => item.title)
-					.join(', ')
-			}
-			return null
+			console.log('current :>> ', current);
+
+			let newValueIndex = current.find(
+				(it:SelectableItem) => {
+					return it.value == newValue.value
+				})
+			if (newValueIndex)
+				newItems = newItems.filter(
+					(it:SelectableItem) => {
+						return it.value != newValue.value
+					}) 
+			else
+				newItems.push(newValue)
+		} else {
+			newItems.push(newValue)
 		}
+		emits('update:modelValue', newItems)
+		return
+	}
 
-		const checkItem = (item:SelectableItem) => {
-			if (!model) return false
-			
-			let current = toRaw(props.modelValue)
-			if (current && isSelectableArray(current)){
-				return (<Array<SelectableItem>>current).includes(item)
-			}
-			else if (current && isSelectableItem(current)){
-				return (<SelectableItem>current).value == item.value
-			}
-			return 
-		}
-		const updateValue = (newValue:SelectableItem) => {
-			let current = toRaw(props.modelValue)
-			if (props.multiselect){
-				let newItems:Array<SelectableItem> = []
-				if (current && isSelectableArray(current)){
-					newItems = newItems.concat(current)
-					current = <Array<SelectableItem>>current
-					
-					console.log('current :>> ', current);
+	current = <SelectableItem>current
 
-					let newValueIndex = current.find(
-						(it:SelectableItem) => {
-							return it.value == newValue.value
-						})
-					if (newValueIndex)
-						newItems = newItems.filter(
-							(it:SelectableItem) => {
-								return it.value != newValue.value
-							}) 
-					else
-						newItems.push(newValue)
-				} else {
-					newItems.push(newValue)
-				}
-				// console.log('newItems :>> ', newItems);
-				ctx.emit('update:modelValue', newItems)
-				return
-			}
+	if (current && current.value == newValue.value) {
+		emits('update:modelValue', null)
+	} else {
+		emits('update:modelValue', newValue)
+	}
+	isOpen.value = !isOpen.value
+}
 
-			current = <SelectableItem>current
-
-			if (current && current.value == newValue.value) {
-				ctx.emit('update:modelValue', null)
-			} else {
-				ctx.emit('update:modelValue', newValue)
-			}
-			isOpen.value = !isOpen.value
-		}
-
-		const closeHandler = () => {
-			isOpen.value = false
-		}
-
-		return {
-			items,
-			model,
-			isOpen,
-			checkItem,
-			placeholder: props.placeholder,
-			updateValue,
-			closeHandler,
-			getSelectTitle,
-		}
-	},
+const closeHandler = () => {
+	isOpen.value = false
 }
 </script>
 
@@ -202,6 +202,11 @@ export default {
 	cursor: pointer;
 	height: 36px;
 	outline: none;
+}
+
+.base-select__field.active{
+	border-color: #353535;
+	box-shadow: 0 0 1px 1px var(--primary-color-hover);
 }
 
 .base-select__field:active{
@@ -239,6 +244,11 @@ export default {
 	flex-direction: column;
 	max-height: 126px;
 	overflow-y: auto;
+}
+
+.search-container{
+	width: 100%;
+	padding: 5px 7px;
 }
 
 .select__item{

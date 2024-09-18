@@ -52,11 +52,19 @@ defineProps({
 		padding-left: 24px;
 		padding-right: 24px;
 	}
+	.main-layout__content.centralized-content{
+		padding-left: 24px;
+		padding-right: 24px;	
+	}
 }
 @media (min-width: 768px) {
 	.main-layout__content {
 		padding-left: 32px;
 		padding-right: 32px;
+	}
+	.main-layout__content.centralized-content{
+		padding-left: max(169px, 15%);
+		padding-right: max(169px, 15%);
 	}
 }
 </style>

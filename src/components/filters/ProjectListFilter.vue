@@ -25,8 +25,10 @@
 				<BaseSelect 
 				v-model="filters.selectedCategories" 
 				:items="selectableItems"
-				placeholder="Select categories" multiselect
+				placeholder="Select categories" 
 				style="max-width: 150px;"
+				with-multiselect
+				with-search
 				/>
 			</div>
 		</div>
@@ -46,7 +48,9 @@
 				<div class="filter__items">
 					<BaseSelect
 					v-model="filters.selectedCategories" :items="selectableItems"
-					placeholder="Select categories" multiselect/>
+					placeholder="Select categories"
+					with-multiselect
+					with-search/>
 				</div>
 			</div>
 		</BottomModal>

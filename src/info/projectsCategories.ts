@@ -5,7 +5,9 @@ const projectCategories:Array<ProjectCategory> = [
 	new ProjectCategory(2, "Vue", "#41B883"),
 	new ProjectCategory(3, "Frontend", "#5CB3FF"),
 	new ProjectCategory(4, "Math", "#A62F20"),
-	new ProjectCategory(5, "42 Abu Dhabi", "#00e5fc")
+	new ProjectCategory(5, "42 Abu Dhabi", "#00e5fc"),
+	new ProjectCategory(6, "Shell", "#00ff00"),
+	new ProjectCategory(7, "C", "#3f4fae"),
 ]
 
 function getProjectCategoryByName(name:string):ProjectCategory|undefined {

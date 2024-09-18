@@ -63,7 +63,7 @@ export default {
 .project{
 	background: var(--card-background-color);
 	border: 1px solid var(--border-color);
-	border-radius: 16px;
+	border-radius: 6px;
 	font-size: 14px;
 
 	width: inherit;

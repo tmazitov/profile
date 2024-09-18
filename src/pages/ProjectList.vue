@@ -10,9 +10,10 @@
 			/>
 
 			<div class="project-list__content">
-				<ProjectCard :project="project"
-					v-for="project in projects"
+				<ProjectCard 
+					v-for="project in filteredProjects"
 					:key="`project_${project.id}`"
+					:project="project"
 				/>
 			</div>
 		</div>
@@ -25,9 +26,9 @@ import ProjectListFilter from '../components/filters/ProjectListFilter.vue';
 import ProjectListFiltersInst from '../types/projectListFilters';
 import MainLayout from '../components/layouts/MainLayout.vue';
 import { useRoute, useRouter } from 'vue-router';
-import { reactive, watch } from 'vue';
+import { computed, reactive, watch } from 'vue';
 
-import { projects } from '../info/projects';
+import { projects, sortedLastProjects } from '../info/projects';
 import { projectCategories } from '../info/projectsCategories';
 
 
@@ -38,6 +39,12 @@ const filters = reactive(new ProjectListFiltersInst())
 filters.setupSearch(route.query.s?.toString())
 filters.setupCategories(projectCategories.map(c => c.toSelectableItem()))
 filters.setupSelectedCategories(route.query.ct)
+
+const filteredProjects = computed(() => {
+	if (filters.isEmpty())
+		return sortedLastProjects()
+	return filters.find(sortedLastProjects())
+})
 
 watch(() => filters, (_) => {
 	router.replace({
@@ -56,6 +63,7 @@ watch(() => filters, (_) => {
 	display: flex;
 	flex-direction: column;
 	gap: 18px;
+	width: 100%;
 }
 
 .project-list__header{

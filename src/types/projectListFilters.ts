@@ -1,6 +1,6 @@
 import { LocationQueryRaw, LocationQueryValue } from "vue-router"
 import SelectableItem from "./selectableItem"
-
+import Project from "./project"
 class ProjectListFiltersInst {
 	selectedCategories:	Array<SelectableItem>
 	categories:	Array<SelectableItem>
@@ -49,6 +49,36 @@ class ProjectListFiltersInst {
 		}
 
 		return query;
+	}
+
+	isEmpty(): boolean {
+		return this.search.length == 0 && this.selectedCategories.length == 0
+	}
+
+	find(projectList:Array<Project>):Array<Project>{
+		const search = this.search.toLowerCase()
+
+		return projectList.filter(project => {
+			
+			const projectName = project.name.toLowerCase()
+			const projectDescription = project.description.toLowerCase()
+
+			if (search 
+			&& !projectName.includes(search) 
+			&& !projectDescription.includes(search)) {
+				return false
+			}
+
+			if (this.selectedCategories.length > 0) {
+				const projectCategoriesIDS = project.categories.map(category => category.id)
+				const selectedCategories = this.selectedCategories.map(category => category.value)
+				if (!selectedCategories.every(category => projectCategoriesIDS.includes(category))) {
+					return false
+				}
+			}
+
+			return true
+		})
 	}
 }
 

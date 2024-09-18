@@ -65,7 +65,6 @@ onMounted(() => {
 		return 0
 	const timeLineItemsWidths = Array.from(timeline.value.querySelectorAll('.timeline__item-key')) 
 		.map((item:Element) => {
-			console.log('item :>> ', item, item.getBoundingClientRect().width, item.clientWidth);
 			return item.getBoundingClientRect().width
 		})
 	width.value = `${Math.max(...timeLineItemsWidths)}px`

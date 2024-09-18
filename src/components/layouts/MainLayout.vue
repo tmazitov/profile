@@ -16,12 +16,14 @@ import Header from './components/Header.vue';
 
 .main-layout{
 	position: relative;
+	height: 100dvh;
+	width: 100dvw;
+	overflow: auto;
 }
 
 .main-layout__content{
 	width: 100%;
 	height: 100%;
-	overflow: hidden;
 	box-sizing: border-box;
 }
 

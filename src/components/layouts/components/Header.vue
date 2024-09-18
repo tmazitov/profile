@@ -1,61 +1,77 @@
 <template>
-    <div class="header">
-        
-		<!-- Logo -->
+	<transition name="header">
+		<div class="header" v-if="(isShow && routeIsHome) || (!routeIsHome)">
+			
+			<!-- Logo -->
 
-		<div class="header__item logo" @click="goToPage('home')">
-			Timur Mazitov
+			<div class="header__item logo" @click="goToPage('home')">
+				Timur Mazitov
+			</div>
+
+			<!-- Header center section -->
+
+			<div class="header__section">
+				<div class="header__item" 
+				v-for="item, index in menuFirstPart()"
+				:key="`menu-first-part__item-${index}`"
+				@click="goToPage(item.pageName)">
+					{{ item.title }}
+				</div>
+			</div>
+
+			<!-- Header end section -->
+
+			<div class="header__section">
+				<div class="header__item" 
+				v-for="item, index in menuSecondPart()"
+				:key="`menu-second-part__item-${index}`"
+				@click="goToPage(item.pageName)">
+					<Icon :icon="item.icon" width="24" height="24" />
+				</div>
+			</div>
+
+			<!-- Menu for mobile -->
+
+			<div class="header__menu">
+				<SideMenu v-model:is-open="sideBarIsOpen">
+					<div class="side-menu__list">
+						<div class="side-menu__item" 
+						v-for="item, index in menuItems"
+						:key="`side-menu__${index}`" @click="goToPage(item.pageName)">
+							<div class="side-menu__item-icon">
+								<Icon :icon="item.icon" width="24" height="24" />
+							</div>
+							<div class="side-menu__item-title">{{ item.title }}</div>
+						</div>
+					</div>
+				</SideMenu>
+			</div>
 		</div>
-
-		<!-- Header center section -->
-
-        <div class="header__section">
-            <div class="header__item" 
-			v-for="item, index in menuFirstPart()"
-			:key="`menu-first-part__item-${index}`"
-			@click="goToPage(item.pageName)">
-				{{ item.title }}
-			</div>
-        </div>
-
-		<!-- Header end section -->
-
-        <div class="header__section">
-            <div class="header__item" 
-			v-for="item, index in menuSecondPart()"
-			:key="`menu-second-part__item-${index}`"
-			@click="goToPage(item.pageName)">
-				{{ item.title }}
-			</div>
-        </div>
-
-		<!-- Menu for mobile -->
-
-        <div class="header__menu">
-            <SideMenu v-model:is-open="sideBarIsOpen">
-                <div class="side-menu__list">
-                    <div class="side-menu__item" 
-					v-for="item, index in menuItems"
-					:key="`side-menu__${index}`" @click="goToPage(item.pageName)">
-                        <div class="side-menu__item-icon">
-                            <Icon :icon="item.icon" width="24" height="24" />
-                        </div>
-                        <div class="side-menu__item-title">{{ item.title }}</div>
-                    </div>
-                </div>
-            </SideMenu>
-        </div>
-    </div>
+	</transition>
 </template>
 
 <script lang="ts" setup>
 import SideMenu from './menu/SideMenu.vue'
-import {Icon} from '@iconify/vue'
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
+import { Icon } from '@iconify/vue';
 
 const router = useRouter()
 const sideBarIsOpen = ref(false)
+const isShow = ref(false)
+
+onMounted(() => {
+	const layout = document.querySelector(".main-layout")
+	if (!layout)
+		return
+	isShow.value = layout.scrollTop > 240
+	layout.addEventListener('scroll', () => {
+		if (!isShow.value && layout.scrollTop > 240)
+			isShow.value = true
+		else if (isShow.value && layout.scrollTop <= 240)
+			isShow.value = false
+	})
+})
 
 type MenuItem = {
 	title: string
@@ -74,7 +90,7 @@ const menuItems:Array<MenuItem> = [
 
 const menuFirstPart = () => menuItems.slice(0, 4)
 const menuSecondPart = () => menuItems.slice(4, 6)
-
+const routeIsHome = computed(() => router.currentRoute.value.name === "home")
 
 const goToPage = (pageName: string|undefined) => {
 	if (!pageName)
@@ -170,5 +186,22 @@ const goToPage = (pageName: string|undefined) => {
 .side-menu__item > *{ 
     display: flex;
     justify-content: center;
+}
+
+.header-enter-active {
+	animation: header 0.3s;
+}
+
+.header-leave-active {
+	animation: header 0.3s reverse;
+}
+
+@keyframes header {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
 </style>

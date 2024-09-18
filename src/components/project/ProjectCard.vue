@@ -46,7 +46,7 @@ export default {
 		let router = useRouter()
 
 		const openProject = () => {
-			router.push({name: "Project", params: {
+			router.push({name: "project", params: {
 				projectId: props.project.id,
 			}})
 		}

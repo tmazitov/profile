@@ -2,7 +2,7 @@
 
 	<!-- About Me -->
 
-	<InfoBlock>
+	<InfoBlock fullscreen>
 		<div class="about-container">
 			<div class="about">
 			<div class="about__name">
@@ -46,6 +46,10 @@
 			</template>
 		</Timeline> -->
 	</InfoBlock>
+
+	<InfoBlock title="Projects">
+		<ProjectList/>
+	</InfoBlock>
 		
 	<!-- <div class="skills__container">
 		<SkillCard v-for="skill in skills" 
@@ -54,17 +58,6 @@
 			:isOpen="openedSkill == skill.id"/>
 	</div> -->
 
-	<div class="projects__container">
-		<div class="projects__header">
-			<div class="projects__title">
-				Last projects
-			</div>
-			<div class="projects__button" @click="goToPage('ProjectList')">
-				See all
-			</div>
-		</div>
-		<ProjectList/>
-	</div>
 </template>
 
 <script lang="ts" setup>
@@ -127,24 +120,6 @@ const goToPage = (name: string) => router.push({name})
 	display: flex;
 	gap: 16px;
 	flex-wrap: wrap;
-}
-
-
-.projects__container{
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
-}
-
-.projects__header{
-	display: flex;
-	justify-content: space-between;
-	align-items: flex-end;
-}
-
-.projects__title{
-	font-size: 20px;
-	font-weight: 500;
 }
 
 .projects__button{

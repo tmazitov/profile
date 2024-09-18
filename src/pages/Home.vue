@@ -9,7 +9,7 @@
 				Timur Mazitov
 			</div>
 			<div class="about__comment">
-				I'm a fullstack developer.<br/>
+				Fullstack developer and physics fancier.<br/>
 				<hr>
 				Here you can find some information about me and my projects.<br/>
 			</div>

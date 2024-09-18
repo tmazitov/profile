@@ -137,8 +137,8 @@ onMounted(() => {
 	width: 16px;
 	left: 16px;
 	border-radius: 50%;
-	border: 1.5px solid white;
-	background: black;
+	border: 1.5px solid var(--text-color);
+	background: var(--background-color);
 	z-index: 2;
 	
 	display: flex;
@@ -152,7 +152,7 @@ onMounted(() => {
 	height: 8px;
 	width: 8px;
 	border-radius: 50%;
-	background: black;
+	background: var(--background-color);
 }
 
 .timeline__item.opened .separator-point{
@@ -179,7 +179,7 @@ onMounted(() => {
 	height: 100%;
 	width: 1px;
 	content: "";
-	background-color: white;
+	background-color: var(--text-color);
 }
 
 .separator-line::before{

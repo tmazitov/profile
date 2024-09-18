@@ -1,24 +1,8 @@
 <template>
-	<MainLayout v-if="!isPageWithoutLayout()">
-		<router-view></router-view>
-	</MainLayout>
-	<router-view v-else></router-view>
+	<router-view></router-view>
 </template>
 
 <script lang="ts" setup>
-	import { useRoute } from 'vue-router';
-import MainLayout from './components/layouts/MainLayout.vue';
-
-	let pagesWithoutLayout = [
-		'Auth'
-	]
-
-	let route = useRoute()
-	let isPageWithoutLayout = () => {
-		if (!route.name)
-			return true
-		return pagesWithoutLayout.includes(route.name as string)
-	}
 
 </script>
 

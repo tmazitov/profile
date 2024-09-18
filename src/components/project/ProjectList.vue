@@ -1,28 +1,18 @@
 <template>
 	<div class="project__list">
-		<ProjectCard v-for="project in projects"
+		<ProjectCard v-for="project in lastProjects"
 			:project="project"  
 			:key="`project__${project.id}`"/>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import Project from '../../types/project';
 import ProjectCard from './ProjectCard.vue';
-import ProjectCategory from '../../types/projectCategory';
+import { projects, sortedLastProjects } from '../../info/projects';
 
-const projects:Array<Project> = [1, 2, 3].map(id => new Project({
-	id: id,
-	name: "ExampleProject",
-	categories: [
-		new ProjectCategory(1, "TS", "#3178c6"),
-		new ProjectCategory(2, "Vue", "#41B883"),
-		new ProjectCategory(3, "Frontend", "#5CB3FF"),
-	],
-	gif: "https://i.pinimg.com/originals/9d/ea/64/9dea6422afee150cbe2f65b5317285eb.gif",
-	finishDate: new Date(),
-	description: "This is the example of the description for the test project"
-}))
+const lastProjectsCount = 3
+const lastProjects = sortedLastProjects()
+	.slice(0, lastProjectsCount)
 
 </script>
 <style scoped>

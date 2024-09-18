@@ -1,63 +1,41 @@
 <template>
+	<MainLayout hide-header-on-scroll>
+		<!-- About Me -->
 
-	<!-- About Me -->
-
-	<InfoBlock fullscreen>
-		<div class="about-container">
-			<div class="about">
-			<div class="about__name">
-				Timur Mazitov
+		<InfoBlock fullscreen>
+			<div class="about-container">
+				<div class="about">
+				<div class="about__name">
+					Timur Mazitov
+				</div>
+				<div class="about__comment">
+					Fullstack developer and physics fancier.<br/>
+					<hr>
+					Here you can find some information about me and my projects.<br/>
+				</div>
+				<div class="tools">
+					<BaseButton title="Journey" icon="tabler:map"/>
+					<BaseButton title="Projects" icon="tabler:briefcase"/>
+					<BaseButton title="Articles" icon="tabler:article" outlined/>
+					<BaseButton title="Contacts" icon="tabler:message-2" outlined/>
+				</div>
 			</div>
-			<div class="about__comment">
-				Fullstack developer and physics fancier.<br/>
-				<hr>
-				Here you can find some information about me and my projects.<br/>
 			</div>
-			<div class="tools">
-				<BaseButton title="Journey" icon="tabler:map"/>
-				<BaseButton title="Projects" icon="tabler:briefcase"/>
-				<BaseButton title="Articles" icon="tabler:article" outlined/>
-				<BaseButton title="Contacts" icon="tabler:message-2" outlined/>
-			</div>
-		</div>
-		</div>
-	</InfoBlock>
+		</InfoBlock>
 
-	<!-- Journey -->
+		<!-- Journey -->
 
-	<InfoBlock title="Journey">	
-		<Timeline :items="journeyEvents"/>
+		<InfoBlock title="Journey">	
+			<Timeline :items="journeyEvents"/>
+		</InfoBlock>
 
-		<!-- <Timeline :value="journeyEvents">
-			<template #opposite="slotProps">
-				<small class="text-surface-500 dark:text-surface-400">
-					{{slotProps.item.periodDateString()}}
-				</small>
-			</template>
-			<template #content="slotProps">
-				<Card>
-					<template #title>
-						{{slotProps.item.title}}
-					</template>
-					<template #content>
-						{{slotProps.item.comment}}
-					</template>
-				</Card>
-			</template>
-		</Timeline> -->
-	</InfoBlock>
+		<!-- Projects -->
 
-	<InfoBlock title="Projects">
-		<ProjectList/>
-	</InfoBlock>
-		
-	<!-- <div class="skills__container">
-		<SkillCard v-for="skill in skills" 
-			:key="`skill_${skill.id}`"
-			:skill="skill"
-			:isOpen="openedSkill == skill.id"/>
-	</div> -->
-
+		<InfoBlock title="Projects">
+			<ProjectList/>
+		</InfoBlock>
+	
+	</MainLayout>
 </template>
 
 <script lang="ts" setup>
@@ -66,8 +44,8 @@ import Timeline from '../components/Timeline.vue';
 import BaseButton from '../components/inputs/BaseButton.vue';
 import ProjectList from '../components/project/ProjectList.vue';
 import InfoBlock from '../components/InfoBlock.vue';
-import { journeyEvents, JourneyItem } from '../info/journey';
-import Card from 'primevue/card';
+import { journeyEvents } from '../info/journey';
+import MainLayout from '../components/layouts/MainLayout.vue';
 const router = useRouter()
 const goToPage = (name: string) => router.push({name})
 // const skills:Array<Skill> = [

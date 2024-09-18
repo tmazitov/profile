@@ -1,6 +1,6 @@
 <template>
 	<transition name="header">
-		<div class="header" v-if="(isShow && routeIsHome) || (!routeIsHome)">
+		<div class="header" v-if="isShow">
 			
 			<!-- Logo -->
 
@@ -59,8 +59,14 @@ import { Icon } from '@iconify/vue';
 const router = useRouter()
 const sideBarIsOpen = ref(false)
 const isShow = ref(false)
+const props = defineProps({
+	hideOnScroll: {
+		type: Boolean,
+		default: false,
+	},
+})
 
-onMounted(() => {
+const setupHideOnScroll = () => {
 	const layout = document.querySelector(".main-layout")
 	if (!layout)
 		return
@@ -71,6 +77,14 @@ onMounted(() => {
 		else if (isShow.value && layout.scrollTop <= 240)
 			isShow.value = false
 	})
+}
+
+onMounted(() => {
+	if (props.hideOnScroll) { 
+		setupHideOnScroll()
+	} else {
+		isShow.value = true
+	}
 })
 
 type MenuItem = {

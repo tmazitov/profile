@@ -1,97 +1,66 @@
 <template>
-	<div class="project-list__header">
-		Projects
-	</div>
+	<MainLayout with-centralized-content>
+		<div class="page">
+			<div class="project-list__header">
+				Projects
+			</div>
 
-	<ProjectListFilter
-		v-model:filters="filters"
-	/>
+			<ProjectListFilter
+				v-model:filters="filters"
+			/>
 
-	<div class="project-list__content">
-		<ProjectCard :project="project"
-			v-for="project in projects"
-			:key="`project_${project.id}`"
-		/>
-	</div>
+			<div class="project-list__content">
+				<ProjectCard :project="project"
+					v-for="project in projects"
+					:key="`project_${project.id}`"
+				/>
+			</div>
+		</div>
+	</MainLayout>
 </template>
 
-<script lang="ts">
-import { reactive, watch } from 'vue';
+<script lang="ts" setup>
 import ProjectCard from '../components/project/ProjectCard.vue';
-import BaseInput from '../components/inputs/BaseInput.vue';
-import BaseSelect from '../components/inputs/BaseSelect.vue';
 import ProjectListFilter from '../components/filters/ProjectListFilter.vue';
-
-import Project from '../types/project';
-import ProjectCategory from '../types/projectCategory';
 import ProjectListFiltersInst from '../types/projectListFilters';
+import MainLayout from '../components/layouts/MainLayout.vue';
 import { useRoute, useRouter } from 'vue-router';
+import { reactive, watch } from 'vue';
 
-export default {
-	name: "ProjectList",
-	components: {
-		ProjectCard,
-		BaseInput,
-		BaseSelect,
-		ProjectListFilter,
-	},
-	setup(){
-		const route = useRoute()
-		const router = useRouter()
-		const filters = reactive(new ProjectListFiltersInst())
-		filters.setupSearch(route.query.s?.toString())
-		filters.setupCategories([
-			new ProjectCategory(1, "TS", "#3178c6").toSelectableItem(),
-			new ProjectCategory(2, "Vue", "#41B883").toSelectableItem(),
-			new ProjectCategory(3, "Frontend", "#5CB3FF").toSelectableItem(),
-			new ProjectCategory(4, "Math", "#A62F20").toSelectableItem(),
-		])
-		filters.setupSelectedCategories(route.query.ct)
+import { projects } from '../info/projects';
+import { projectCategories } from '../info/projectsCategories';
 
-		watch(() => filters.search, (_) => {
-			router.replace({
-				name: "ProjectList",
-				query: filters.toQuery(),
-			})
-		}, {deep: true})
 
-		watch(() => filters.selectedCategories, (_) => {
-			router.replace({
-				name: "ProjectList",
-				query: filters.toQuery(),
-			})
-		}, {deep: true})	
+const route = useRoute()
+const router = useRouter()
+const filters = reactive(new ProjectListFiltersInst())
 
-		let projects:Array<Project> = []
-		for (let i = 0; i < 6; i++)
-		{
-			projects.push(new Project({
-				id: i,
-				name: "ExampleProject",
-				categories: [
-					new ProjectCategory(1, "TS", "#3178c6"),
-					new ProjectCategory(2, "Vue", "#41B883"),
-					new ProjectCategory(3, "Frontend", "#5CB3FF"),
-				],
-				gif: "https://i.pinimg.com/originals/9d/ea/64/9dea6422afee150cbe2f65b5317285eb.gif",
-				finishDate: new Date(),
-				description: "This is the example of the description for the test project"
-			}))
-		}
-		return {
-			projects,
-			filters,
-		}
-	}	
-}
+filters.setupSearch(route.query.s?.toString())
+filters.setupCategories(projectCategories.map(c => c.toSelectableItem()))
+filters.setupSelectedCategories(route.query.ct)
+
+watch(() => filters, (_) => {
+	router.replace({
+		name: "project-list",
+		query: filters.toQuery(),
+	})
+}, {deep: true})
+
 </script>
 
 <style scoped>
 
+.page{
+	margin-top: 56px;
+	padding-top: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+}
+
 .project-list__header{
 	font-size: 32px;
 	font-weight: 600;
-	margin-top: 32px;
 	box-sizing: border-box;
 }
 
@@ -114,11 +83,6 @@ export default {
 }
 
 @media (max-width: 768px){
-	.project-list__header, 
-	.project-list__filters{
-		width: 100%;
-		padding: 0 16px;
-	}
 
 	.project-list__content{
 		grid-template-columns: 1fr 1fr;

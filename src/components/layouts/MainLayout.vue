@@ -1,7 +1,9 @@
 <template>
     <div class="main-layout">
-        <Header></Header>
-        <div class="main-layout__content">
+        <Header :hide-on-scroll="hideHeaderOnScroll"></Header>
+        <div class="main-layout__content" v-bind:class="{
+			'centralized-content': withCentralizedContent,
+		}">
             <slot></slot>
         </div>
     </div>
@@ -9,6 +11,18 @@
 
 <script lang="ts" setup>
 import Header from './components/Header.vue';
+import { defineProps } from 'vue';
+
+defineProps({
+	hideHeaderOnScroll: {
+		type: Boolean,
+		default: false,
+	},
+	withCentralizedContent: {
+		type: Boolean,
+		default: false,
+	},
+})
 
 </script>
 
@@ -25,6 +39,12 @@ import Header from './components/Header.vue';
 	width: 100%;
 	height: 100%;
 	box-sizing: border-box;
+}
+
+.main-layout__content.centralized-content{
+	display: flex;
+	justify-content: center;
+	padding: 0 15%;
 }
 
 @media (max-width: 768px) {

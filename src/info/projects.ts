@@ -38,30 +38,6 @@ const projects:Array<Project> = [
 		finishDate: new Date("2024.08.28"),
 		description: "This is the example of the description for the test project"
 	}),
-	new Project({
-		id: 4,
-		name: "ExampleProject",
-		categories: [
-			getProjectCategoryByName("TS"),
-			getProjectCategoryByName("Vue"),
-			getProjectCategoryByName("Frontend"),
-		],
-		gif: "https://i.pinimg.com/originals/9d/ea/64/9dea6422afee150cbe2f65b5317285eb.gif",
-		finishDate: new Date("2024.08.28"),
-		description: "This is the example of the description for the test project"
-	}),
-	new Project({
-		id: 5,
-		name: "ExampleProject",
-		categories: [
-			getProjectCategoryByName("TS"),
-			getProjectCategoryByName("Vue"),
-			getProjectCategoryByName("Frontend"),
-		],
-		gif: "https://i.pinimg.com/originals/9d/ea/64/9dea6422afee150cbe2f65b5317285eb.gif",
-		finishDate: new Date("2024.08.28"),
-		description: "This is the example of the description for the test project"
-	}),
 ]
 
 function sortedLastProjects():Array<Project> {

@@ -6,11 +6,13 @@
 		}">
             <slot></slot>
         </div>
+		<Footer/>
     </div>
 </template>
 
 <script lang="ts" setup>
 import Header from './components/Header.vue';
+import Footer from './components/Footer.vue';
 import { defineProps } from 'vue';
 
 defineProps({
@@ -37,7 +39,6 @@ defineProps({
 
 .main-layout__content{
 	width: 100%;
-	height: 100%;
 	box-sizing: border-box;
 }
 
@@ -59,8 +60,8 @@ defineProps({
 }
 @media (min-width: 768px) {
 	.main-layout__content {
-		padding-left: 32px;
-		padding-right: 32px;
+		padding-left: max(169px, 15%);
+		padding-right: max(169px, 15%);
 	}
 	.main-layout__content.centralized-content{
 		padding-left: max(169px, 15%);

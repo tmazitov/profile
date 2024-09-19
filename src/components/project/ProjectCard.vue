@@ -18,7 +18,9 @@
 				<div class="project__submit-date">
 					{{ project.finishDate.toLocaleDateString() }}
 				</div>
-				<div class="project__button" @click="openProject">More</div>
+				<div class="project__button" @click="openProject">
+					Details
+				</div>
 			</div>
 		</div>
 	</div>

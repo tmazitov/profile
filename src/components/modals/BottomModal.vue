@@ -17,32 +17,11 @@
 	</div>
 </template>
 
-<script lang="ts">
-import { computed } from 'vue';
+<script lang="ts" setup>
+const show = defineModel<boolean>({ required: true })
 
-export default {
-	name: "BottomModal",
-	model: [
-		{
-			prop: 'show',
-			event: 'update:show'
-		}
-	],
-	props: {
-		show: Boolean,
-	},	
-	setup(props, ctx){
-		let show = computed(() => props.show)
-
-		const closeHandler = () => {
-			ctx.emit('update:show', false)
-		}
-
-		return {
-			show,
-			closeHandler,
-		}
-	}	
+const closeHandler = () => {
+	show.value = false;
 }
 </script>
 

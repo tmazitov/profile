@@ -58,12 +58,12 @@ watch(() => filters, (_) => {
 <style scoped>
 
 .page{
-	margin-top: 56px;
 	padding-top: 24px;
 	display: flex;
 	flex-direction: column;
 	gap: 18px;
 	width: 100%;
+	min-height: 100dvh;
 }
 
 .project-list__header{

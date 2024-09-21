@@ -1,67 +1,60 @@
 <template>
+	<MainLayout>
+		<div class="page" v-if="project">
+			
+			<div class="project__image topic">
+				<img :src="project.gif">
+			</div>
 
-	<div class="project__image topic">
-		<img :src="project.gif">
-	</div>
+			<div class="project__short-info topic">
+				<div class="project__header">
+					<div class="project__name">{{ project.name }}</div>
+					<div class="project__submit-date">{{ project.finishDate.toLocaleDateString() }}</div>
+				</div>
 
-	<div class="project__short-info topic">
-		<div class="project__header">
-			<div class="project__name">{{ project.name }}</div>
-			<div class="project__submit-date">{{ project.finishDate.toLocaleDateString() }}</div>
+				<div class="project__categories">
+					<Category 
+					:title="category.name" :color="category.color"
+					v-for="category in project.categories" 
+					:key="`category__${category.id}`"/>
+				</div>
+
+				<div class="project__description">
+					{{ project.description }}
+				</div>
+			</div>
+
 		</div>
-
-		<div class="project__categories">
-			<Category 
-			:title="category.name" :color="category.color"
-			v-for="category in project.categories" 
-			:key="`category__${category.id}`"/>
-		</div>
-
-		<div class="project__description">
-			{{ project.description }}
-		</div>
-	</div>
-
-	<div class="project__subheader topic" >
-	Explanation
-	</div>
+		<div class="page" v-else></div>
+	</MainLayout>
 </template>
 
-<script lang="ts">
-import Category from '../components/inputs/Category.vue'
+<script lang="ts" setup>
+import { useRoute } from 'vue-router';
+import MainLayout from '../components/layouts/MainLayout.vue';
+import Category from '../components/inputs/Category.vue';
+import { computed } from 'vue';
+import { projects } from '../info/projects';
 
-import Project from '../types/project';
-import ProjectCategory from '../types/projectCategory';
-export default {
-	name: "ProjectPage",
-	components: {
-		Category,
-	},
-	setup(){
-		let project = new Project({
-			id: 1,
-			name: "ExampleProject",
-			categories: [
-				new ProjectCategory(1, "TS", "#3178c6"),
-				new ProjectCategory(2, "Vue", "#41B883"),
-				new ProjectCategory(3, "Frontend", "#5CB3FF"),
-			],
-			gif: "https://i.pinimg.com/originals/9d/ea/64/9dea6422afee150cbe2f65b5317285eb.gif",
-			finishDate: new Date(),
-			description: "This is the example of the description for the test project"
-		})
+const route = useRoute()
+const projectId = computed(() => Number(route.params["projectId"]))
+const project = computed(() => {
+	if (typeof projectId.value != 'number')
+		return
+	return projects.find(proj => proj.id == projectId.value)
+})
 
-		return {
-			project,
-		}
-	}
-}
 </script>
 
 <style scoped>
-.topic{
-	max-width: 650px;
+
+.page{
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	min-height: 100dvh;
 }
+
 .project__header{
 	display: flex;
     justify-content: space-between;
@@ -81,18 +74,12 @@ export default {
 .project__short-info{
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: 0.7em;
 }
 .project__categories{
 	display: flex;
 	flex-direction: row;
 	gap: 10px;
-}
-
-@media (min-width: 480px) {
-	.project__image{
-		margin-top: 24px;
-	}
 }
 
 .project__image {

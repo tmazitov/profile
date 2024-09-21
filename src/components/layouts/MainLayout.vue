@@ -5,8 +5,8 @@
 			'centralized-content': withCentralizedContent,
 		}">
             <slot></slot>
+			<Footer/>
         </div>
-		<Footer/>
     </div>
 </template>
 
@@ -33,40 +33,34 @@ defineProps({
 .main-layout{
 	position: relative;
 	height: 100dvh;
-	width: 100dvw;
 	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .main-layout__content{
-	width: 100%;
 	min-height: 100dvh;
 	box-sizing: border-box;
-}
-
-.main-layout__content.centralized-content{
-	display: flex;
-	justify-content: center;
-	padding: 0 15%;
+	flex: 1;
+	margin-top: 56px;
+	max-width: 960px
 }
 
 @media (max-width: 768px) {
+	
 	.main-layout__content{
-		padding-left: 24px;
-		padding-right: 24px;
+		width: calc(100% - 24px - 24px);
+		margin-left: 24px;
+		margin-right: 24px;
 	}
-	.main-layout__content.centralized-content{
-		padding-left: 24px;
-		padding-right: 24px;	
-	}
+	
 }
 @media (min-width: 768px) {
 	.main-layout__content {
-		padding-left: max(169px, 15%);
-		padding-right: max(169px, 15%);
-	}
-	.main-layout__content.centralized-content{
-		padding-left: max(169px, 15%);
-		padding-right: max(169px, 15%);
+		width: calc(100% - max(169px, 15%) - max(169px, 15%));
+		margin-left: max(169px, 15%);
+		margin-right: max(169px, 15%);
 	}
 }
 </style>

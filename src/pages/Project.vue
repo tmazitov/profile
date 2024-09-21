@@ -1,12 +1,12 @@
 <template>
-	<MainLayout>
+	<MainLayout disable-mobile-padding>
 		<div class="page" v-if="project">
 			
 			<div class="project__image topic">
 				<img :src="project.gif">
 			</div>
 
-			<div class="project__short-info topic">
+			<div class="project__short-info topic project__info">
 				<div class="project__header">
 					<div class="project__name">{{ project.name }}</div>
 					<div class="project__submit-date">{{ project.finishDate.toLocaleDateString() }}</div>
@@ -52,7 +52,7 @@ const project = computed(() => {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
-	min-height: 100dvh;
+	min-height: 100vh;
 }
 
 .project__header{
@@ -101,5 +101,11 @@ const project = computed(() => {
 	color: var(--text-color-light);
 	cursor: pointer;
 	font-size: 14px;
+}
+
+@media (max-width: 768px) {
+	.project__info{
+		padding: 0 var(--mobile-padding);
+	}
 }
 </style>

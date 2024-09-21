@@ -10,9 +10,9 @@ const projects:Array<Project> = [
 			getProjectCategoryByName("Shell"),
 			getProjectCategoryByName("C"),
 		],
-		gif: "https://i.pinimg.com/originals/9d/ea/64/9dea6422afee150cbe2f65b5317285eb.gif",
+		gif: "/src/assets/winter.gif",
 		finishDate: new Date("2024.07.05"),
-		description: "Try your self to replicate mini version of bash"
+		description: "Try your hand - create your own mini shell and don't turn gray from bugs and memory leaks!"
 	}),
 	new Project({
 		id: 2,
@@ -24,7 +24,7 @@ const projects:Array<Project> = [
 		],
 		gif: "https://i.pinimg.com/originals/9d/ea/64/9dea6422afee150cbe2f65b5317285eb.gif",
 		finishDate: new Date("2024.09.01"),
-		description: "Raycasting, basic 3D graphics, a lot of maths and first own game from scratch"
+		description: "Raycasting, basic 3D graphics, a lot of math and first own game from scratch."
 	}),
 	new Project({
 		id: 3,

@@ -167,7 +167,7 @@ const goToPage = (pageName: string|undefined) => {
 
 @media (max-width: 768px) {
 	.header{
-		padding: 0 24px;
+		padding: 0 var(--mobile-padding);
 	}
 	.header__section{
 		display: none;

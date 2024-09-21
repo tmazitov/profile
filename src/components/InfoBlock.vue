@@ -22,14 +22,14 @@ defineProps({
 <style scoped>
 .info-block{
 	width: 100%;
-	min-height: calc(100dvh - 56px - 24px);
+	min-height: calc(100vh - 56px - 24px);
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
 }
 
 .info-block.fullscreen{
-	min-height: 100dvh;
+	min-height: 100vh;
 }
 
 .info-block__title{

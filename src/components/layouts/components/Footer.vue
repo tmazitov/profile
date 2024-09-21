@@ -11,22 +11,11 @@
 <style scoped>
 .footer{
 	width: 100%;
-	height: 120px;
-	padding: 12px 0;
+	height: 6em;
+	padding: 0.8em 1.2em;
 	margin-top: 24px;
 	background: var(--card-background-color);
+	border-radius: .5em .5em 0 0; 
 }
 
-@media (max-width: 768px) {
-	.footer{
-		padding-left: 24px;
-		padding-right: 24px;
-	}
-}
-@media (min-width: 768px) {
-	.footer {
-		padding-left: max(169px, 15%);
-		padding-right: max(169px, 15%);
-	}
-}
 </style>

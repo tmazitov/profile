@@ -52,10 +52,6 @@ button:hover {
   	padding: 2em;
 }
 
-.page {
-	max-width: 960px;
-}
-
 /* @media (prefers-color-scheme: light) {
 	:root {
 		color: #213547;

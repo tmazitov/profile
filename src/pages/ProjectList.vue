@@ -63,7 +63,7 @@ watch(() => filters, (_) => {
 	flex-direction: column;
 	gap: 18px;
 	width: 100%;
-	min-height: 100dvh;
+	min-height: 100vh;
 }
 
 .project-list__header{

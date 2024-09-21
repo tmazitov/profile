@@ -10,7 +10,7 @@ const projects:Array<Project> = [
 			getProjectCategoryByName("Shell"),
 			getProjectCategoryByName("C"),
 		],
-		gif: `/winter.gif`,
+		gif: `project_1.gif`,
 		finishDate: new Date("2024.07.05"),
 		description: "Try your hand - create your own mini shell and don't turn gray from bugs and memory leaks!"
 	}),

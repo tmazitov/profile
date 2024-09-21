@@ -1,7 +1,7 @@
 <template>
 <div class="project" v-if="project">
 	<div class="project__image">
-		<img :src="project.gif">
+		<img :src="image">
 	</div>
 	<div class="project__content">
 		<div class="project__name">{{ project.name }}</div>
@@ -27,38 +27,32 @@
 </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import Category from '../inputs/Category.vue';
 
 import Project from '../../types/project';
 import { useRouter } from 'vue-router';
 
-export default {
-	name: "Project",
-	props: {
-		project: {
-			type: Project,
-			required: true,
-		},
+const props = defineProps({
+	project: {
+		type: Project,
+		required: true,
 	},
-	components: {
-		Category,
-	},
-	setup(props){
-		let router = useRouter()
-
-		const openProject = () => {
-			router.push({name: "project", params: {
-				projectId: props.project.id,
-			}})
-		}
-
-		return {
-			openProject,
-			project: props.project,
-		}
+	image: {
+		type: String,
+		default: '',
 	}
+})
+
+const router = useRouter()
+
+const openProject = () => {
+	router.push({name: "project", params: {
+		projectId: props.project.id,
+	}})
 }
+console.log('import.meta.url :>> ', props.project.gif);
+
 </script>
 
 <style scoped>

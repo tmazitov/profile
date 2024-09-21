@@ -33,7 +33,11 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
+<<<<<<< HEAD
           node-version: 20
+=======
+          node-version: 18
+>>>>>>> d495ad3 (update deploy.yml)
           cache: 'npm'
       - name: Install dependencies
         run: npm ci

@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { JourneyItem } from '../info/journey';
-import { computed, defineProps, onMounted, ref } from 'vue';
+import { defineProps, onMounted, ref } from 'vue';
 import { Icon } from '@iconify/vue/dist/iconify.js';
 
 const open = ref<number|null>(null)
@@ -50,7 +50,7 @@ const toggle = (index: number) => {
 		open.value = null
 	}
 }
-const props = defineProps({
+defineProps({
   	items: {
 		type: Array<JourneyItem>,
 		required: true,

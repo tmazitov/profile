@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { computed, ref, watch, toRaw, nextTick } from 'vue';
+import { computed } from 'vue';
 
 export default {
 	name: "BottomModal",

@@ -8,7 +8,7 @@
 
 <script lang="ts" setup>
 import ProjectCard from './ProjectCard.vue';
-import { projects, sortedLastProjects } from '../../info/projects';
+import { sortedLastProjects } from '../../info/projects';
 
 const lastProjectsCount = 3
 const lastProjects = sortedLastProjects()

@@ -53,7 +53,7 @@
 <script lang="ts" setup>
 import SideMenu from './menu/SideMenu.vue'
 import { useRouter } from 'vue-router';
-import { computed, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { Icon } from '@iconify/vue';
 
 const router = useRouter()
@@ -104,7 +104,6 @@ const menuItems:Array<MenuItem> = [
 
 const menuFirstPart = () => menuItems.slice(0, 4)
 const menuSecondPart = () => menuItems.slice(4, 6)
-const routeIsHome = computed(() => router.currentRoute.value.name === "home")
 
 const goToPage = (pageName: string|undefined) => {
 	if (!pageName)

@@ -39,15 +39,14 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
 import Timeline from '../components/Timeline.vue';
 import BaseButton from '../components/inputs/BaseButton.vue';
 import ProjectList from '../components/project/ProjectList.vue';
 import InfoBlock from '../components/InfoBlock.vue';
 import { journeyEvents } from '../info/journey';
 import MainLayout from '../components/layouts/MainLayout.vue';
-const router = useRouter()
-const goToPage = (name: string) => router.push({name})
+// const router = useRouter()
+// const goToPage = (name: string) => router.push({name})
 // const skills:Array<Skill> = [
 // 	new Skill(1, "golang", "https://go.dev/blog/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg"),
 // 	new Skill(2, "javascript", "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/512px-Unofficial_JavaScript_logo_2.svg.png?20141107110902"),

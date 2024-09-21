@@ -28,7 +28,7 @@ import MainLayout from '../components/layouts/MainLayout.vue';
 import { useRoute, useRouter } from 'vue-router';
 import { computed, reactive, watch } from 'vue';
 
-import { projects, sortedLastProjects } from '../info/projects';
+import { sortedLastProjects } from '../info/projects';
 import { projectCategories } from '../info/projectsCategories';
 
 

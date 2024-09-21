@@ -39,6 +39,7 @@ defineProps({
 
 .main-layout__content{
 	width: 100%;
+	min-height: 100dvh;
 	box-sizing: border-box;
 }
 

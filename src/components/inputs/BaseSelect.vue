@@ -242,7 +242,7 @@ const closeHandler = () => {
 
 	display: flex;
 	flex-direction: column;
-	max-height: 126px;
+	max-height: 164px;
 	overflow-y: auto;
 }
 

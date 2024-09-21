@@ -17,7 +17,9 @@
 	</div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
+import { defineModel } from 'vue';
+
 const show = defineModel<boolean>({ required: true })
 
 const closeHandler = () => {

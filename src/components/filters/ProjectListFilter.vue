@@ -33,7 +33,7 @@
 			</div>
 		</div>
 
-		<BottomModal v-model:show="isOpen">
+		<BottomModal v-model="isOpen">
 			<div class="filter-inner">
 				<div class="filter__header">
 					<div class="filter-header__icon">
@@ -57,7 +57,7 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import BaseIconButton from '../inputs/BaseIconButton.vue'
 import BaseSelect from '../inputs/BaseSelect.vue';
 import BaseInput from '../inputs/BaseInput.vue'
@@ -67,34 +67,16 @@ import { Icon } from '@iconify/vue/dist/iconify.js';
 import { computed, ref } from 'vue';
 import ProjectListFiltersInst from '../../types/projectListFilters';
 
-export default {
-	name: "ProjectListFilter",
-	components: {
-		BottomModal,
-		BaseIconButton,
-		BaseSelect,
-		BaseInput,
-		Icon,
+const props = defineProps({
+	filters: {
+		type: ProjectListFiltersInst,
+		required: true,
 	},
-	props: {
-		filters: {
-			type: ProjectListFiltersInst,
-			required: true,
-		},
-	},
-	setup(props) {
-		let selectableItems = computed(() => props.filters.categories)
+})
 
-		let filters = computed(() => props.filters)
-		let isOpen = ref(false)
+const selectableItems = computed(() => props.filters.categories)
 
-		return {
-			isOpen,
-			filters,
-			selectableItems,
-		}
-	},
-}
+const isOpen = ref(false)
 </script>
 
 <style  scoped>

@@ -7,8 +7,7 @@ export default ({ mode }) => {
     process.env = {...process.env, ...loadEnv(mode, process.cwd())};
     return defineConfig({
 		plugins: [vue()],
-		base: process.env.VITE_MODE == 'DEV' ?
-			'/' : "/profile/",
+		base:  "/profile/",
 		resolve: {
 			alias: [
 				{ find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) },
@@ -19,5 +18,5 @@ export default ({ mode }) => {
 			host: "0.0.0.0",
 			port: 5173
 		}
-    });
+     });
 }

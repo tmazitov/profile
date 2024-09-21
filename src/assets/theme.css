@@ -16,6 +16,7 @@
 	--primary-color-hover: #549bd8;
 
 	--mobile-padding: 18px;
+	
 }
 
 @media (prefers-color-scheme: light) {

@@ -3,7 +3,7 @@
 		<div class="page" v-if="project">
 			
 			<div class="project__image topic">
-				<img :src="project.gif">
+				<img :src="project.image">
 			</div>
 
 			<div class="project__short-info topic project__info">

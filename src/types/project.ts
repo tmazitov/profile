@@ -5,7 +5,7 @@ class Project {
 	name: string
 	categories: Array<ProjectCategory>
 	description: string
-	gif: string
+	image: string
 	finishDate: Date
 
 	constructor(info:any) {
@@ -13,7 +13,7 @@ class Project {
 		this.name = info.name		
 		this.categories = info.categories
 		this.description = info.description
-		this.gif = info.gif	
+		this.image = info.image	
 		this.finishDate = info.finishDate	
 	}
 }

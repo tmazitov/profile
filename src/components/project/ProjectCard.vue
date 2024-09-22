@@ -51,7 +51,6 @@ const openProject = () => {
 		projectId: props.project.id,
 	}})
 }
-console.log('import.meta.url :>> ', props.project.gif);
 
 </script>
 

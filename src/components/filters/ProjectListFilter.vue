@@ -65,7 +65,7 @@ import BaseInput from '../inputs/BaseInput.vue'
 import BottomModal from '../modals/BottomModal.vue'
 import { Icon } from '@iconify/vue/dist/iconify.js';
 
-import { ref, defineProps, defineModel } from 'vue';
+import { ref, defineModel } from 'vue';
 import ProjectListFiltersInst from '@/types/projectListFilters';
 
 const filters = defineModel<ProjectListFiltersInst>({

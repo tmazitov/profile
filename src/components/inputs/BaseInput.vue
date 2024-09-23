@@ -15,7 +15,8 @@
 				:width="leftIcon.width" 
 				:height="leftIcon.height" 
 				:color="leftIcon.color"
-				@click="leftIcon.onClick"
+				@click="leftIcon.onClick ? 
+					leftIcon.onClick() : null"
 			/>
 		</div>
 
@@ -37,59 +38,29 @@
 				:width="rightIcon.width" 
 				:height="rightIcon.height" 
 				:color="rightIcon.color"
-				@click="rightIcon.onClick"
+				@click="rightIcon.onClick ?
+					rightIcon.onClick() : null"
 			/>
 		</div>
 	</div>
 </template>
 
-<script lang="ts">
-import { computed, ref } from 'vue';
+<script setup lang="ts">
+import { defineModel, defineProps, ref } from 'vue';
 import IconT from '../../types/icon';
 import {Icon} from '@iconify/vue'
 
-export default  {
-	name: "BaseInput",
-	components: {
-		Icon,
-	},
-	emits: [
-		'update:value',	
-	],
-	props: {
-		value: {
-			type: String || Number,
-			required: true,
-		},
-		placeholder: String,
-		rightIcon: 	Object as () => IconT,
-		leftIcon: 	Object as () => IconT,
-		label: String,
-	},
-	modal: {
-		prop: 'value',
-		emit: 'update:value', 
-	},
-	setup(props, ctx){
-		let isFocused = ref(false)
-		let	rightIcon = computed(() => props.rightIcon)
-		let	leftIcon = computed(() => props.leftIcon)
-		let computedValue = computed(() => props.value)
-		let label = computed(() => props.label)
-		let updateValue = (ev: any) => {
-			ctx.emit('update:value', ev.target["value"])
-		}
+const value = defineModel<string>({required: true})
+defineProps({
+	placeholder: String,
+	rightIcon: 	Object as () => IconT,
+	leftIcon: 	Object as () => IconT,
+	label: String,
+})
 
-		return{
-			isFocused,
-			rightIcon,
-			leftIcon,
-			updateValue,
-			placeholder: props.placeholder,
-			value: computedValue,
-			label: label,
-		}
-	}
+const isFocused = ref(false)
+const updateValue = (ev: any) => {
+	value.value = ev.target["value"]
 }
 </script>
 

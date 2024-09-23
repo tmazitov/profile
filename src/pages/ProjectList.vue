@@ -1,14 +1,12 @@
 <template>
-	<MainLayout with-centralized-content>
+	<MainLayout>
 		<div class="page">
 			<div class="project-list__header">
 				Projects
 			</div>
 
-			<ProjectListFilter
-				v-model:filters="filters"
-			/>
-
+			<ProjectListFilter v-model="filters"/>
+			
 			<div class="project-list__content">
 				<ProjectCard 
 					v-for="project in filteredProjects"
@@ -18,10 +16,11 @@
 				/>
 			</div>
 		</div>
+
 	</MainLayout>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import ProjectCard from '../components/project/ProjectCard.vue';
 import ProjectListFilter from '../components/filters/ProjectListFilter.vue';
 import ProjectListFiltersInst from '../types/projectListFilters';

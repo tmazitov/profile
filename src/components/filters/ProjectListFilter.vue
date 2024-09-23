@@ -1,9 +1,8 @@
 <template>
-	<div class="project-list__filters">
+	<div class="project-list__filters" >
 		<div class="filters-tools">
-			<BaseInput
-			class="filter-search"
-			v-model:value="filters.search" 
+			<BaseInput class="filter-search"
+			v-model="filters.search" 
 			placeholder="Search"
 			:leftIcon="{
 				name: 'tabler:search',
@@ -12,23 +11,24 @@
 			}"
 			:rightIcon="{ 
 				name: 'tabler:x',
-				isHidden: filters.search.length == 0,
-				onClick: () => filters.search = ''
+				isHidden: filters.search.length === 0,
+				onClick: clearSearch,
 			}"/>
 
 			<div class="project-list-filter__mobile-button">
 				<BaseIconButton 
-				icon="tabler:filter" @click="isOpen = true"/>
+					icon="tabler:filter" 
+					@click="isOpen = true"/>
 			</div>
 
 			<div class="project-list-filter__desktop-content">
 				<BaseSelect 
-				v-model="filters.selectedCategories" 
-				:items="selectableItems"
-				placeholder="Select categories" 
-				style="max-width: 150px;"
-				with-multiselect
-				with-search
+					v-model="filters.selectedCategories" 
+					:items="filters.categories"
+					placeholder="Select categories" 
+					style="max-width: 150px;"
+					with-multiselect
+					with-search
 				/>
 			</div>
 		</div>
@@ -47,7 +47,8 @@
 				</div>
 				<div class="filter__items">
 					<BaseSelect
-					v-model="filters.selectedCategories" :items="selectableItems"
+					v-model="filters.selectedCategories" 
+					:items="filters.categories"
 					placeholder="Select categories"
 					with-multiselect
 					with-search/>
@@ -57,26 +58,24 @@
 	</div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import BaseIconButton from '../inputs/BaseIconButton.vue'
 import BaseSelect from '../inputs/BaseSelect.vue';
 import BaseInput from '../inputs/BaseInput.vue'
 import BottomModal from '../modals/BottomModal.vue'
 import { Icon } from '@iconify/vue/dist/iconify.js';
 
-import { computed, ref } from 'vue';
-import ProjectListFiltersInst from '../../types/projectListFilters';
+import { ref, defineProps, defineModel } from 'vue';
+import ProjectListFiltersInst from '@/types/projectListFilters';
 
-const props = defineProps({
-	filters: {
-		type: ProjectListFiltersInst,
-		required: true,
-	},
+const filters = defineModel<ProjectListFiltersInst>({
+	required: true,
 })
 
-const selectableItems = computed(() => props.filters.categories)
-
 const isOpen = ref(false)
+const clearSearch = () => {
+	filters.value.search = ''
+}
 </script>
 
 <style  scoped>

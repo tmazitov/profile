@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import { defineModel } from 'vue';
 
-const show = defineModel<boolean>({ required: true })
+const show = defineModel<boolean>()
 
 const closeHandler = () => {
 	show.value = false;

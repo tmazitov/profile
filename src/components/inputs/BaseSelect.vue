@@ -20,7 +20,7 @@
 			<div class="base-select__select" v-if="isOpen">
 				<div class="search-container">
 					<BaseInput v-if="withSearch"
-						v-model:value="search"
+						v-model="search"
 						placeholder="Search..."
 					/>
 				</div>
@@ -141,8 +141,6 @@ const updateValue = (newValue:SelectableItem) => {
 		if (current && isSelectableArray(current)){
 			newItems = newItems.concat(current)
 			current = <Array<SelectableItem>>current
-			
-			console.log('current :>> ', current);
 
 			let newValueIndex = current.find(
 				(it:SelectableItem) => {

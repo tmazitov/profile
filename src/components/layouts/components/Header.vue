@@ -52,10 +52,11 @@
 
 <script lang="ts" setup>
 import SideMenu from './menu/SideMenu.vue'
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import { Icon } from '@iconify/vue';
 
+const route = useRoute()
 const router = useRouter()
 const sideBarIsOpen = ref(false)
 const isShow = ref(false)
@@ -108,7 +109,13 @@ const menuSecondPart = () => menuItems.slice(4, 6)
 const goToPage = (pageName: string|undefined) => {
 	if (!pageName)
 		return 
-	const mainLayout = document.querySelector(".main__layout")
+	const mainLayout = document.querySelector(".main-layout")
+	if (pageName == route.name) {
+		if (mainLayout){
+			mainLayout.scrollTo({left:0,top:0, behavior: 'smooth'})
+		}
+		return
+	}
 	if (mainLayout){
 		mainLayout.scrollTo({left:0,top:0})
 	} 

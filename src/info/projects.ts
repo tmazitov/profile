@@ -48,15 +48,15 @@ const projects:Array<Project> = [
 	}),
 	new Project({
 		id: 3,
-		name: "ExampleProject",
+		name: "Sustainability hackathon",
 		categories: [
-			getProjectCategoryByName("TS"),
-			getProjectCategoryByName("Vue"),
 			getProjectCategoryByName("Frontend"),
+			getProjectCategoryByName("Vue"),
+			getProjectCategoryByName("TS"),
 		],
-		image: "https://i.pinimg.com/originals/9d/ea/64/9dea6422afee150cbe2f65b5317285eb.gif",
-		finishDate: new Date("2024.08.28"),
-		description: "This is the example of the description for the test project"
+		image: imageGet('al_reyada.png'),
+		finishDate: new Date("2024.03.24"),
+		description: "Website for a team project as part of an Sustainability hackathon by Total energies"
 	}),
 ]
 

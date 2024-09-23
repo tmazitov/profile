@@ -13,6 +13,7 @@
 				<ProjectCard 
 					v-for="project in filteredProjects"
 					:key="`project_${project.id}`"
+					:image="project.image"
 					:project="project"
 				/>
 			</div>

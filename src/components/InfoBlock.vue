@@ -1,5 +1,5 @@
 <template>
-	<div class="info-block" v-bind:class="{
+	<div class="info-block" :id="`info-block-${name}`" v-bind:class="{
 		fullscreen: fullscreen,
 	}">
 		<div class="info-block__title" v-if="title && !$slots['title']">
@@ -14,6 +14,10 @@
 
 <script setup lang="ts">
 defineProps({
+	name: {
+		type: String,
+		required: true,
+	},
 	title: String,
 	fullscreen: Boolean,
 })

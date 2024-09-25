@@ -1,43 +1,48 @@
 <template>
-	<MainLayout hide-header-on-scroll>
-		<!-- About Me -->
+	<!-- About Me -->
 
-		<InfoBlock fullscreen name="main">
-			<div class="about-container">
-				<div class="about">
-				<div class="about__name">
-					Timur Mazitov
-				</div>
-				<div class="about__comment">
-					Fullstack developer and physics fancier.<br/>
-					<hr>
-					Here you can find some information about me and my projects.<br/>
-				</div>
-				<div class="tools">
-					<BaseButton v-for="button,index in buttons"
-						:key="`button-${index}`"
-						:title="button.title"
-						:icon="button.icon"
-						:outlined="button.outlined"
-						@click="scrollTo(button.infoBlockName)"/>
-				</div>
+	<InfoBlock fullscreen name="main">
+		<div class="about-container">
+			<div class="about">
+			<div class="about__name">
+				Timur Mazitov
 			</div>
+			<div class="about__comment">
+				Fullstack developer and physics fancier.<br/>
+				<hr>
+				Here you can find some information about me and my projects.<br/>
 			</div>
-		</InfoBlock>
+			<div class="tools">
+				<BaseButton v-for="button,index in buttons"
+					:key="`button-${index}`"
+					:title="button.title"
+					:icon="button.icon"
+					:outlined="button.outlined"
+					@click="scrollTo(button.infoBlockName)"/>
+			</div>
+		</div>
+		</div>
+	</InfoBlock>
 
-		<!-- Journey -->
+	<!-- Journey -->
 
-		<InfoBlock title="Journey" name="journey">	
-			<Timeline :items="journeyEvents"/>
-		</InfoBlock>
+	<InfoBlock title="Journey" name="journey">	
+		<Timeline :items="journeyEvents"/>
+	</InfoBlock>
 
-		<!-- Projects -->
+	<!-- Projects -->
 
-		<InfoBlock title="Projects" name="projects">
-			<ProjectList/>
-		</InfoBlock>
+	<InfoBlock title="Projects" name="projects">
+		<ProjectList/>
+	</InfoBlock>
+
+	<!-- Contacts -->
+	<InfoBlock title="Contacts" name="contacts" fit-content>
+		<div class="contacts">
+
+		</div>
+	</InfoBlock>
 	
-	</MainLayout>
 </template>
 
 <script lang="ts" setup>
@@ -46,13 +51,11 @@ import BaseButton from '../components/inputs/BaseButton.vue';
 import ProjectList from '../components/project/ProjectList.vue';
 import InfoBlock from '../components/InfoBlock.vue';
 import { journeyEvents } from '../info/journey';
-import MainLayout from '../components/layouts/MainLayout.vue';
 
 const buttons = [
 	{title: "Journey", icon: "tabler:map", infoBlockName: "journey"},
 	{title: "Projects", icon: "tabler:briefcase", infoBlockName: "projects"},
-	{title: "Articles", icon: "tabler:article", outlined: true},
-	{title: "Contacts", icon: "tabler:message-2", outlined: true},
+	{title: "Contacts", icon: "tabler:message-2", infoBlockName: "contacts", outlined: true},
 ]
 
 const scrollTo = (infoBlockName: string|undefined) => {

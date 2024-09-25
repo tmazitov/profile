@@ -53,13 +53,14 @@
 <script lang="ts" setup>
 import SideMenu from './menu/SideMenu.vue'
 import { useRoute, useRouter } from 'vue-router';
-import { onMounted, ref } from 'vue';
+import { onMounted, onUpdated, ref } from 'vue';
 import { Icon } from '@iconify/vue';
 
 const route = useRoute()
 const router = useRouter()
 const sideBarIsOpen = ref(false)
 const isShow = ref(false)
+const isHideEnabled = ref(false)
 const props = defineProps({
 	hideOnScroll: {
 		type: Boolean,
@@ -67,17 +68,29 @@ const props = defineProps({
 	},
 })
 
+const scrollHandler = (event:any) => {
+	if (!isShow.value && event.target.scrollTop > 240)
+		isShow.value = true
+	else if (isShow.value && event.target.scrollTop <= 240)
+		isShow.value = false
+}
+
 const setupHideOnScroll = () => {
 	const layout = document.querySelector(".main-layout")
 	if (!layout)
 		return
 	isShow.value = layout.scrollTop > 240
-	layout.addEventListener('scroll', () => {
-		if (!isShow.value && layout.scrollTop > 240)
-			isShow.value = true
-		else if (isShow.value && layout.scrollTop <= 240)
-			isShow.value = false
-	})
+	layout.addEventListener('scroll', scrollHandler)
+	isHideEnabled.value = true
+}
+
+const removeHideOnScroll = () => {
+	const layout = document.querySelector(".main-layout")
+	if (!layout)
+		return
+	isShow.value = true
+	layout.removeEventListener('scroll', scrollHandler)
+	isHideEnabled.value = false
 }
 
 onMounted(() => {
@@ -85,6 +98,15 @@ onMounted(() => {
 		setupHideOnScroll()
 	} else {
 		isShow.value = true
+	}
+})
+
+onUpdated(() => {
+	if (props.hideOnScroll && !isHideEnabled.value) {
+		setupHideOnScroll()
+	}
+	if (!props.hideOnScroll && isHideEnabled.value) {
+		removeHideOnScroll()
 	}
 })
 

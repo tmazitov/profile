@@ -1,30 +1,26 @@
 <template>
-	<MainLayout>
-		<div class="page">
-			<div class="project-list__header">
-				Projects
-			</div>
-
-			<ProjectListFilter v-model="filters"/>
-			
-			<div class="project-list__content">
-				<ProjectCard 
-					v-for="project in filteredProjects"
-					:key="`project_${project.id}`"
-					:image="project.image"
-					:project="project"
-				/>
-			</div>
+	<div class="page">
+		<div class="project-list__header">
+			Projects
 		</div>
 
-	</MainLayout>
+		<ProjectListFilter v-model="filters"/>
+		
+		<div class="project-list__content">
+			<ProjectCard 
+				v-for="project in filteredProjects"
+				:key="`project_${project.id}`"
+				:image="project.image"
+				:project="project"
+			/>
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts">
 import ProjectCard from '../components/project/ProjectCard.vue';
 import ProjectListFilter from '../components/filters/ProjectListFilter.vue';
 import ProjectListFiltersInst from '../types/projectListFilters';
-import MainLayout from '../components/layouts/MainLayout.vue';
 import { useRoute, useRouter } from 'vue-router';
 import { computed, reactive, watch } from 'vue';
 

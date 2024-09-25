@@ -1,5 +1,4 @@
 <template>
-	<MainLayout disable-mobile-padding>
 		<div class="page" v-if="project">
 			
 			<div class="project__image topic">
@@ -26,12 +25,10 @@
 
 		</div>
 		<div class="page" v-else></div>
-	</MainLayout>
 </template>
 
 <script lang="ts" setup>
 import { useRoute } from 'vue-router';
-import MainLayout from '../components/layouts/MainLayout.vue';
 import Category from '../components/inputs/Category.vue';
 import { computed } from 'vue';
 import { projects } from '../info/projects';

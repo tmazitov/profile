@@ -1,6 +1,7 @@
 <template>
 	<div class="info-block" :id="`info-block-${name}`" v-bind:class="{
 		fullscreen: fullscreen,
+		'fit-content': fitContent,
 	}">
 		<div class="info-block__title" v-if="title && !$slots['title']">
 			{{ title }}
@@ -20,6 +21,7 @@ defineProps({
 	},
 	title: String,
 	fullscreen: Boolean,
+	fitContent: Boolean,
 })
 </script>
 
@@ -29,11 +31,16 @@ defineProps({
 	min-height: calc(100vh - 56px - 24px);
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	gap: 24px;
 }
 
 .info-block.fullscreen{
 	min-height: 100vh;
+}
+
+.info-block.fit-content{
+	min-height: auto;
 }
 
 .info-block__title{

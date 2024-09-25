@@ -33,14 +33,17 @@
 	<!-- Projects -->
 
 	<InfoBlock title="Projects" name="projects">
+		<template v-slot:button>
+			<div class="project__button" @click="goToPage('project-list')">
+				See all
+			</div>
+		</template>
 		<ProjectList/>
 	</InfoBlock>
 
 	<!-- Contacts -->
 	<InfoBlock title="Contacts" name="contacts" fit-content>
-		<div class="contacts">
-
-		</div>
+		<ContactList/>
 	</InfoBlock>
 	
 </template>
@@ -51,12 +54,20 @@ import BaseButton from '../components/inputs/BaseButton.vue';
 import ProjectList from '../components/project/ProjectList.vue';
 import InfoBlock from '../components/InfoBlock.vue';
 import { journeyEvents } from '../info/journey';
+import ContactList from '@/components/contact/ContactList.vue';
+import { useRouter } from 'vue-router';
 
 const buttons = [
 	{title: "Journey", icon: "tabler:map", infoBlockName: "journey"},
 	{title: "Projects", icon: "tabler:briefcase", infoBlockName: "projects"},
 	{title: "Contacts", icon: "tabler:message-2", infoBlockName: "contacts", outlined: true},
 ]
+
+const router = useRouter()
+
+const goToPage = (pageName: string) => {
+	router.push({name: pageName})
+}
 
 const scrollTo = (infoBlockName: string|undefined) => {
 	if (!infoBlockName)
@@ -132,6 +143,15 @@ const scrollTo = (infoBlockName: string|undefined) => {
 
 .p-timeline-left .p-timeline-event-opposite{
 	text-align: unset;
+}
+
+.project__button {
+	text-decoration: underline;
+	padding: 10px;
+	cursor: pointer;
+	color: var(--text-color-light);
+	user-select: none;
+	transition: color .3s;
 }
 
 </style>

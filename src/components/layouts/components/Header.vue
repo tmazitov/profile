@@ -138,9 +138,6 @@ const goToPage = (pageName: string|undefined) => {
 		}
 		return
 	}
-	if (mainLayout){
-		mainLayout.scrollTo({left:0,top:0})
-	} 
 	router.push({name: pageName})
 	sideBarIsOpen.value = false
 }

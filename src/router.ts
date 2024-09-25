@@ -22,4 +22,12 @@ const router = createRouter({
     history: createWebHistory("/profile/"),
     routes,
 })
+
+router.afterEach(() => {
+	const mainLayout = document.querySelector('.main-layout')
+	if(mainLayout){
+		mainLayout.scrollTop = 0
+	}
+})
+
 export default router

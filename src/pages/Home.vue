@@ -123,7 +123,6 @@ const scrollTo = (infoBlockName: string|undefined) => {
 }
 
 .tools {
-	margin-top: 8px;
 	display: flex;
 	gap: 16px;
 	flex-wrap: wrap;

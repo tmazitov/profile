@@ -33,15 +33,27 @@
 			<!-- Menu for mobile -->
 
 			<div class="header__menu">
-				<SideMenu v-model:is-open="sideBarIsOpen">
-					<div class="side-menu__list">
-						<div class="side-menu__item" 
-						v-for="item, index in menuItems"
-						:key="`side-menu__${index}`" @click="goToPage(item.pageName)">
-							<div class="side-menu__item-icon">
+				<SideMenu v-model="sideBarIsOpen">
+					<div class="side-menu__content">
+						<div class="side-menu__list">
+							<div class="side-menu__item" 
+							v-for="item, index in menuFirstPart()"
+							:key="`side-menu__${index}`" @click="goToPage(item.pageName)">
+								<div class="side-menu__item-icon">
+									<Icon :icon="item.icon" width="24" height="24" />
+								</div>
+								<div class="side-menu__item-title">{{ item.title }}</div>
+							</div>
+						</div>
+
+						<div class="side-menu__contacts">
+							<div>Contacts</div>
+							<div class="header__item" 
+							v-for="item, index in menuSecondPart()"
+							:key="`menu-second-part__item-${index}`"
+							@click="goToPage(item.pageName)">
 								<Icon :icon="item.icon" width="24" height="24" />
 							</div>
-							<div class="side-menu__item-title">{{ item.title }}</div>
 						</div>
 					</div>
 				</SideMenu>
@@ -119,14 +131,14 @@ type MenuItem = {
 const menuItems:Array<MenuItem> = [
 	{title: "Home", icon: "tabler:home-2", pageName: "home"},
 	{title: "Projects", icon: "tabler:briefcase", pageName: "project-list"},
-	{title: "Articles", icon: "tabler:article", pageName: undefined},
-	{title: "Library", icon: "tabler:archive", pageName: undefined},
+	// {title: "Articles", icon: "tabler:article", pageName: undefined},
+	// {title: "Library", icon: "tabler:archive", pageName: undefined},
 	{title: "Github", icon: "tabler:brand-github", pageName: undefined},
 	{title: "LinkedIn", icon: "tabler:brand-linkedin", pageName: undefined},
 ]
 
-const menuFirstPart = () => menuItems.slice(0, 4)
-const menuSecondPart = () => menuItems.slice(4, 6)
+const menuFirstPart = () => menuItems.slice(0, 2)
+const menuSecondPart = () => menuItems.slice(2, 4)
 
 const goToPage = (pageName: string|undefined) => {
 	if (!pageName)
@@ -211,10 +223,10 @@ const goToPage = (pageName: string|undefined) => {
 .side-menu__list {
     display: flex;
     flex-direction: column;
+	gap: 16px;
 }
 
 .side-menu__item {
-    padding: 10px 8px;
     font-size: 16px;
     font-weight: 300;
     display: flex;
@@ -242,5 +254,21 @@ const goToPage = (pageName: string|undefined) => {
 	to {
 		opacity: 1;
 	}
+}
+
+.side-menu__content{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	gap: 16px;
+}
+
+.side-menu__contacts{
+	display: flex;
+	flex-direction: row;
+	gap: 16px;
+	border-top: 1px solid var(--border-color);
+	padding-top: 16px;
 }
 </style>

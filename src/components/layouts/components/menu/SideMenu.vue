@@ -12,35 +12,12 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { Icon } from '@iconify/vue';
-import { computed } from 'vue';
 
-export default {
-	name: "SideMenu",
-	props: {
-		isOpen: {
-			type: Boolean,
-			required: true,
-		}
-	},
-	model: {
-		prop: "isOpen",
-		event: "update:isOpen",
-	},
-	components: {
-		Icon,
-	},
-	setup(props, ctx){
-		let isOpen = computed(() => props.isOpen)
-		const toggleOpen = () => {
-			ctx.emit("update:isOpen", !props.isOpen)
-		}
-		return {
-			isOpen,
-			toggleOpen
-		}		
-	}
+const isOpen = defineModel()
+const toggleOpen = () => {
+	isOpen.value = !isOpen.value
 }
 </script>
 
@@ -59,14 +36,22 @@ export default {
 }
 
 .menu__content{
-	width: 170px;
-	height: calc(100vh - 56px);
+	width: 100%;
+	height: 156px;
 	position: absolute;
+	left: 0;
 	right: 0;
 	top: 56px;
 	background: var(--background-color);
 	border-left: 1px solid var(--border-color);
 	overflow-x: hidden;
+	padding: 0 32px;
+}
+
+@media (max-width: 768px) {
+	.menu__content{
+		padding: var(--mobile-padding);
+    }
 }
 
 .show-enter-active{
@@ -78,11 +63,11 @@ export default {
 
 @keyframes show {
 	from {
-		max-width: 0;
+		max-height: 0;
 	}
-
+	
 	to {
-		max-width: 170px;
+		max-height: 156px;
 	}
 }
 </style>

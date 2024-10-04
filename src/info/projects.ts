@@ -1,3 +1,4 @@
+import Article from "@/types/article";
 import Project from "../types/project";
 import { getProjectCategoryByName } from "./projectsCategories";
 
@@ -32,7 +33,8 @@ const projects:Array<Project> = [
 		],
 		image: imageGet('winter.gif'),
 		finishDate: new Date("2024.07.05"),
-		description: "Try your hand - create your own mini shell and don't turn gray from bugs and memory leaks!"
+		description: "Try your hand - create your own mini shell and don't turn gray from bugs and memory leaks!",
+		article: new Article("Minishell.md"),
 	}),
 	new Project({
 		id: 2,
@@ -43,8 +45,9 @@ const projects:Array<Project> = [
 			getProjectCategoryByName("C"),
 		],
 		image: "https://i.pinimg.com/originals/9d/ea/64/9dea6422afee150cbe2f65b5317285eb.gif",
+		description: "Raycasting, basic 3D graphics, a lot of math and first own game from scratch.",
 		finishDate: new Date("2024.09.01"),
-		description: "Raycasting, basic 3D graphics, a lot of math and first own game from scratch."
+		article: null,
 	}),
 	new Project({
 		id: 3,
@@ -55,8 +58,9 @@ const projects:Array<Project> = [
 			getProjectCategoryByName("TS"),
 		],
 		image: imageGet('al_reyada.png'),
+		description: "Website for a team project as part of an Sustainability hackathon by Total energies",
 		finishDate: new Date("2024.03.24"),
-		description: "Website for a team project as part of an Sustainability hackathon by Total energies"
+		article: null,
 	}),
 ]
 

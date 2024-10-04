@@ -1,12 +1,15 @@
 import vue from '@vitejs/plugin-vue'
 import { URL, fileURLToPath } from 'url';
 import { defineConfig, loadEnv } from 'vite';
+import Markdown from 'vite-plugin-md'	
 
 export default ({ mode }) => {
     // Load app-level env vars to node-level env vars.
     process.env = {...process.env, ...loadEnv(mode, process.cwd())};
     return defineConfig({
-		plugins: [vue()],
+		plugins: [ 
+			vue(),
+		],
 		base:  "/profile/",
 		resolve: {
 			alias: [

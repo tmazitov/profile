@@ -23,6 +23,11 @@
 				</div>
 			</div>
 
+			<vue-markdown
+				v-if="isLoaded && project.article.content" 
+				:source="project.article.content"
+			/>
+
 		</div>
 		<div class="page" v-else></div>
 </template>
@@ -30,15 +35,23 @@
 <script lang="ts" setup>
 import { useRoute } from 'vue-router';
 import Category from '../components/inputs/Category.vue';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { projects } from '../info/projects';
+import VueMarkdown from 'vue-markdown-render'
+
+const isLoaded = ref(false)
 
 const route = useRoute()
 const projectId = computed(() => Number(route.params["projectId"]))
 const project = computed(() => {
 	if (typeof projectId.value != 'number')
 		return
-	return projects.find(proj => proj.id == projectId.value)
+	const project = projects.find(proj => proj.id == projectId.value)
+	if (!project)
+		return
+	project.loadArticle()
+	?.then(() => isLoaded.value = true)
+	return project
 })
 
 </script>
@@ -48,7 +61,6 @@ const project = computed(() => {
 .page{
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
 	min-height: 100vh;
 }
 
@@ -72,6 +84,7 @@ const project = computed(() => {
 	display: flex;
 	flex-direction: column;
 	gap: 0.7em;
+	margin-top: 20px;
 }
 .project__categories{
 	display: flex;
@@ -91,7 +104,14 @@ const project = computed(() => {
 .project__subheader{
 	font-size: 20px;
 	font-weight: 600;
-	width: calc(100% - 32px);		
+	width: calc(100% - 32px);
+}
+
+.project__description{
+	padding: 10px 16px;
+	border-radius: 10px;
+	background: var(--card-background-color);
+	margin-top: 8px;	
 }
 
 .project__submit-date{

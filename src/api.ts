@@ -2,7 +2,8 @@ import axios from "axios";
 
 class API {
 	static getArticle(name:string) {
-		return axios.get(`/src/assets/articles/${name}`)
+		const isDev = import.meta.env.DEV
+		return axios.get(`${isDev ? '/src' : ''}/assets/articles/${name}`)
 	}
 }
 

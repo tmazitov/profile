@@ -34,7 +34,6 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: ${{ secrets.FTP_SERVER_DIR }}
         server: ${{ secrets.FTP_SERVER }}
-<<<<<<< HEAD
         exclude: |
           **/.git*
           **/.git*/**
@@ -50,20 +49,4 @@ jobs:
           **/package.json
           **/yarn.lock
           **/README.md
-=======
-        exclude:|
-        **/.git*
-        **/.git*/**
-        **/.vscode*/**
-        **/.env*/**
-        **/node_modules/**
-        **/src/**
-        **/public/**
-        **/ts*/**
-        **/vite*/**
-        **/index.html
-        **/package.json
-        **/yarn.lock
-        **/README.md
->>>>>>> e67a643 (update deploy.yml)
 

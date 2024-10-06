@@ -13,7 +13,7 @@ export default ({ mode }) => {
 		build: {
 			outDir: 'profile',
 		},
-		base:  "/profile/",
+		base:  "/",
 		resolve: {
 			alias: [
 				{ find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) },

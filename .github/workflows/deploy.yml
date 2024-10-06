@@ -25,7 +25,7 @@ jobs:
     - name: 🔨 Build
       run: | 
         yarn build
-        cp src/assets/articles articles -r
+        cp src/assets/articles dist/assets/articles -r
         mv dist profile
 
     - name: 📂 Sync files

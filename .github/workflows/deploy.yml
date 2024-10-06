@@ -27,12 +27,6 @@ jobs:
         yarn build
         cp src/assets/articles profile/assets/articles -r
 
-    - name: 📂 Get excluded files
-      id: get_excluded_files
-      run: |
-        excluded_files=$(find . -maxdepth 1 -name profile -prune -o -print | tr '\n' ' ')
-        echo "excluded_files=$excluded_files" >> $GITHUB_ENV
-
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
@@ -40,4 +34,18 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: ${{ secrets.FTP_SERVER_DIR }}
         server: ${{ secrets.FTP_SERVER }}
-        exclude: ${{ env.excluded_files }}
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/.vscode*/**
+          **/.env*/**
+          **/node_modules/**
+          **/src/**
+          **/public/**
+          **/ts*/**
+          **/vite*/**
+          **/index.html
+          **/package.json
+          **/yarn.lock
+          **/README.md
+

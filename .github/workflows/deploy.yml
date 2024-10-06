@@ -3,9 +3,8 @@ on:
     branches: ['master']
 name: 🚀 Deploy website on push
 jobs:
-
-  deploy:
-    name: 🎉 Deploy
+  build:
+    name: 🏗️ Build
     runs-on: ubuntu-latest
     steps:
 
@@ -24,9 +23,16 @@ jobs:
         yarn install
 
     - name: 🔨 Build
-      run: |
-        yarn build
-        mv dist public_html
+      run: yarn build
+
+  deploy:
+    name: 🎉 Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5

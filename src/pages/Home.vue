@@ -10,7 +10,7 @@
 			<div class="about__comment">
 				Fullstack developer and physics fancier.<br/>
 				<hr>
-				Here you can find some information about me and my projects.<br/>
+				Here you can find some information about me and my projects!<br/>
 			</div>
 			<div class="tools">
 				<BaseButton v-for="button,index in buttons"

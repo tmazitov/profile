@@ -30,7 +30,7 @@ jobs:
     - name: 📂 Get excluded files
       id: get_excluded_files
       run: |
-        excluded_files=$(find . -maxdepth 1 -name profile -prune -o -print | tr '\n' ',')
+        excluded_files=$(find . -maxdepth 1 -name profile -prune -o -print)
         echo "excluded_files=${excluded_files%,}" >> $GITHUB_ENV
 
     - name: 📂 Sync files

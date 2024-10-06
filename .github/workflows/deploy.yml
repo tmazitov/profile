@@ -25,8 +25,7 @@ jobs:
     - name: 🔨 Build
       run: | 
         yarn build
-        cp src/assets/articles dist/assets/articles -r
-        mv dist profile
+        cp src/assets/articles profile/assets/articles -r
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5

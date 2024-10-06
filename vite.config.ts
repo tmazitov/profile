@@ -10,6 +10,9 @@ export default ({ mode }) => {
 		plugins: [ 
 			vue(),
 		],
+		build: {
+			outDir: 'profile',
+		},
 		base:  "/profile/",
 		resolve: {
 			alias: [

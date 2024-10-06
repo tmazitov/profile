@@ -27,6 +27,7 @@ jobs:
 
   deploy:
     name: 🎉 Deploy
+    needs: build
     runs-on: ubuntu-latest
     steps:
 
@@ -38,4 +39,5 @@ jobs:
       with:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: ${{ secrets.FTP_SERVER_DIR }}
         server: ${{ secrets.FTP_SERVER }}

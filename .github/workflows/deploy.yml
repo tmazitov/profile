@@ -30,8 +30,8 @@ jobs:
     - name: 📂 Get excluded files
       id: get_excluded_files
       run: |
-        excluded_files=$(find . -maxdepth 1 -name profile -prune -o -print)
-        echo "excluded_files=${excluded_files%,}" >> $GITHUB_ENV
+        excluded_files=$(find . -maxdepth 1 -name profile -prune -o -print | tr '\n' ' ')
+        echo "excluded_files=$excluded_files" >> $GITHUB_ENV
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5

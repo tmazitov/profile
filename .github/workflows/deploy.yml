@@ -3,8 +3,10 @@ on:
     branches: ['master']
 name: 🚀 Deploy website on push
 jobs:
-  build:
-    name: 🏗️ Build
+
+  deploy:
+    name: 🎉 Deploy
+    needs: build
     runs-on: ubuntu-latest
     steps:
 
@@ -23,16 +25,9 @@ jobs:
         yarn install
 
     - name: 🔨 Build
-      run: yarn build
-
-  deploy:
-    name: 🎉 Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v4
+      run: |
+        yarn build
+        mv dist public_html
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -41,4 +36,3 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: ${{ secrets.FTP_SERVER_DIR }}
         server: ${{ secrets.FTP_SERVER }}
-        local-dir: ${{ secrets.FTP_LOCAL_DIR }}

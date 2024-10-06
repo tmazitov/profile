@@ -42,7 +42,7 @@ jobs:
           **/node_modules/**
           **/src/**
           **/public/**
-          **/ts*/**
+          **/ts*/** 
           **/vite*/**
           **/index.html
           **/package.json

@@ -42,8 +42,8 @@ jobs:
           **/node_modules/**
           **/src/**
           **/public/**
-          **/ts*/** 
-          **/vite*/**
+          **/tsconfig.*/** 
+          **/vite.*/**
           **/index.html
           **/package.json
           **/yarn.lock

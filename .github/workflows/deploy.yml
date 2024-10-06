@@ -6,7 +6,6 @@ jobs:
 
   deploy:
     name: 🎉 Deploy
-    needs: build
     runs-on: ubuntu-latest
     steps:
 

@@ -13,6 +13,7 @@
 	--text-color-hover: #aaaaaa;
 
 	--primary-color: #5aa7eb;
+	--primary-color-opacity: #5aa7eb17;
 	--primary-color-hover: #549bd8;
 
 	--mobile-padding: 18px;
@@ -38,7 +39,7 @@
 	}
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 {
 	color: var(--primary-color);
 }
 
@@ -74,7 +75,8 @@ blockquote{
 	position: relative;
 	margin-left: 0;
 	padding-left: 16px;
-	background: var(--card-background-color);
+	padding-right: 16px;
+	background: var(--primary-color-opacity);
 	border-radius: 3px;
 	overflow: hidden;
 	margin-right: 0;

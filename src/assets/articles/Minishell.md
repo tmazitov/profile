@@ -54,7 +54,7 @@ Together with pipes the commands transfer data like this:
 
 `ls` --> `grep "test"` --> `wc -l`
 
-> If before pipe user enter an output redirection, an output file will be opened, but not used for output. Next command will receive data from pipe (only last matters).
+> If before pipe user enter the output redirection, the output file will be opened, but not used for output. Next command will receive data from the pipe (only last matters).
 
-> If after pipe user enter an input redirection, an pipe data will be ignored. Next command will receive data from input redirection (only last matters).
+> If after pipe user enter the input redirection, the pipe data will be ignored. Next command will receive data from the input redirection (only last matters).
 

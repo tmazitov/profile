@@ -23,10 +23,12 @@
 				</div>
 			</div>
 
-			<vue-markdown
-				v-if="isLoaded && project.article.content" 
-				:source="project.article.content"
-			/>
+			<div class="project__info">
+				<vue-markdown
+					v-if="isLoaded && project.article.content" 
+					:source="project.article.content"
+				/>
+			</div>
 
 		</div>
 		<div class="page" v-else></div>

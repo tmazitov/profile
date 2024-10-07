@@ -38,8 +38,32 @@
 	}
 }
 
+h1, h2, h3, h4, h5, h6 {
+	color: var(--primary-color);
+}
+
+code {
+	padding: 3px 5px;
+	background-color: var(--input-background-color);
+	border-radius: 3px;
+	box-sizing: border-box;
+	/* width: min(100%, fit-content); */
+	overflow-x: auto;
+	/* display: inline-block; */
+}
+
+blockquote{
+	margin-left: 0;
+	padding-left: 16px;
+	border-left: 1.5px solid var(--primary-color);
+}
+
 body {
 	color: var(--text-color);
+}
+
+ul {
+	padding-left: 24px;
 }
 
 *::placeholder {

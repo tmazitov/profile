@@ -19,14 +19,14 @@ When each student takes responsibility from his part is better. If a teammate fi
 
 ### The shell user experience
 
-##### Redirections
+#### Redirections
 
 The shell experience starts at the command prompt, where users can type any command they want to execute. Besides commands, users can also use input and output redirection, which allows them to store and use the results of command execution. There are four basic types of redirection that we need to implement in this project:
 
-- > - create or clean and write output data to the file
-- >> - create if it's needed and write output data to the end of file
-- < - read input data from the file
-- << - create a temporary file that you can fill until you type a limiter and use collected data as input
+- `>` - create or clean and write output data to the file
+- `>>` - create if it's needed and write output data to the end of file
+- `<` - read input data from the file
+- `<<` - create a temporary file that you can fill until you type a limiter and use collected data as input
 
 Command line may contain a lot of redirection calls, but only last one matters. For example:
 
@@ -36,7 +36,7 @@ Command line may contain a lot of redirection calls, but only last one matters. 
 
 There we have all of redirection type. First, bash will check existence of `infile1` and create `outfile1` and `outfile2` if needed. Finally shell will open an input for the temporary file that the user can fill until he write the "limiter" string. But what about the data? From which source will grep receive input and where it will write an output? Exactly latest one matters! Command grep will take a data `from temporary file` and will `fill the outfile2` as an output file. That how it works.
 
-##### Pipe
+#### Pipe
 
 In addiction, user may use the pipe `|` tool. It provides the ability to transfer a command output to another command as an input. For example:
 

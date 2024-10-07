@@ -58,3 +58,34 @@ Together with pipes the commands transfer data like this:
 
 > If after pipe user enter the input redirection, the pipe data will be ignored. Next command will receive data from the input redirection (only last matters).
 
+#### Commands
+
+Terminal shell have 2 types of commands: 
+
+1. `Built-in` - commands that are part of the shell
+2. `External` - commands that are stored in the directories of the operating system
+
+Basically external commands are located not in the current folder. To use them shell needs to parse the `PATH environment variable` that contain the list of paths to the folders that contain public programs separated by ':' character.
+
+> If the PATH environment variable is not defined or does not include the path to the folder with the required command, the program will be undefined.
+
+Built-in commands should be available to use any way. Here you can see a list of built-in commands needed to implement:
+
+| Command | Argument    | Description                                                       |
+| ------- | ----------- | ----------------------------------------------------------------- |
+| echo    | string      | Print the string to the output (environment variables is allowed) |
+| cd      | folder path | Change current directory to another one by folder path            |
+| pwd     | -           | Display absolute path of the current folder                       |
+| export  | name=value  | Create environment variable with name and value                   |
+| unset   | name        | Remove environment variable by name                               |
+| env     | -           | Display list of the environment variables                         |
+| exit    | status code | Exit from the shell with status code                              |
+
+#### Signals
+
+Provide ability to interrupt the command execution or shell work. In this project we are need to handle this types of signals:
+
+1. `CTRL + D` - interrupt the shell work
+2. `CTRL + C` - interrupt the command execution (if command is not executed should display new prompt)
+3. `CTRL + \` - doing nothing (really)
+

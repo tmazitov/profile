@@ -1,6 +1,7 @@
 :root {
 	--background-color: #1a1a1a;
 	--border-color: #2d2d2d;
+	--border-radius: 6px;
 
 	--input-background-color: #242424;
 	--card-background-color: #1a1a1a;
@@ -8,7 +9,7 @@
 	--button-background-hover: #3a3a3a;
 
 
-	--text-color: #ffffffde;
+	--text-color: #ffffffef;
 	--text-color-light: #868686;
 	--text-color-hover: #aaaaaa;
 
@@ -57,4 +58,12 @@ a {
 }
 a:hover {
   color: var(--primary-color-hover);
+}
+
+h4, h5, h6 {
+	color: var(--text-color);
+}
+
+p {
+	color: var(--text-color);
 }

@@ -8,10 +8,17 @@ A significant part of the 42 Common Core curriculum is learning how modern techn
 
 ### Let's start!
 
+```mermaid
+flowchart TD
+
+A["Bash 🖼️"] --> B["Parsing 📁"]
+A --> C["Execution 🔨"]
+```
+
 Minishell is a partner project. Students typically divide it into two main parts:
 
-* parsing part - receive and storage information before and during the program work. 
-* execution part - provides usability of built-in and external programs. 
+* parsing  - receive and storage information before and during the program work. 
+* execution  - provides usability of built-in and external programs. 
 
 But it's only one type of dividing responsibility inside the team. I know cases where students make both parts together. In my opinion, it's more difficult, because making this project in a proper way the first time is almost impossible. The subject of the project gives you only basic view of the shell functions and some time after starting the implementation, you begin to encounter errors, leaks or another mistakes. And in case, when the code that related with error is not yours, it's very hard to understand the programming logic of your partner but you need to fix it. Not having clear logic generates misunderstandings and more errors and bugs in the end.
 
@@ -52,7 +59,12 @@ This command will count folders and files that name contain "test" string. How i
 
 Together with pipes the commands transfer data like this:
 
-`ls` --> `grep "test"` --> `wc -l`
+```mermaid
+flowchart LR
+
+A("ls") ---> B(grep 'test') ---> C(wc -l)
+```
+
 
 > If before pipe user enter the output redirection, the output file will be opened, but not used for output. Next command will receive data from the pipe (only last matters).
 
@@ -88,4 +100,3 @@ Provide ability to interrupt the command execution or shell work. In this projec
 1. `CTRL + D` - interrupt the shell work
 2. `CTRL + C` - interrupt the command execution (if command is not executed should display new prompt)
 3. `CTRL + \` - doing nothing (really)
-

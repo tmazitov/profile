@@ -24,9 +24,10 @@
 			</div>
 
 			<div class="project__info">
-				<vue-markdown
+				<vue-markdown ref="markdown"
 					v-if="isLoaded && project.article.content" 
 					:source="project.article.content"
+					
 				/>
 			</div>
 
@@ -40,8 +41,25 @@ import Category from '../components/inputs/Category.vue';
 import { computed, ref } from 'vue';
 import { projects } from '../info/projects';
 import VueMarkdown from 'vue-markdown-render'
+import GraphProvider from '@/types/graph';
 
 const isLoaded = ref(false)
+const markdown = ref<any>(null)
+const setupCharts = () => {
+	if (!markdown.value)
+		return
+	const elem:HTMLElement = markdown.value.$el
+	const preElements:Array<HTMLElement> = Array.from(elem.querySelectorAll('pre'))
+	if (!preElements || preElements.length == 0)
+		return
+	const charts = preElements.filter(pre => !!pre.querySelector('code.language-mermaid'))
+	if (!charts || charts.length == 0)
+		return
+
+	charts.forEach(pre => GraphProvider.convertGraph(pre))
+
+	GraphProvider.draw()
+}
 
 const route = useRoute()
 const projectId = computed(() => Number(route.params["projectId"]))
@@ -51,8 +69,18 @@ const project = computed(() => {
 	const project = projects.find(proj => proj.id == projectId.value)
 	if (!project)
 		return
-	project.loadArticle()
-	?.then(() => isLoaded.value = true)
+
+	const promise = project.loadArticle()
+	if (promise) {
+		promise.finally(() => {
+			isLoaded.value = true
+			setTimeout(setupCharts, 0)
+		})
+	} else {
+		isLoaded.value = project.article.isLoaded
+		setTimeout(setupCharts, 0)
+	}
+
 	return project
 })
 

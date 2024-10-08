@@ -4,8 +4,8 @@ h1, h2, h3 {
 
 code {
 	padding: 3px 5px;
-	background-color: var(--input-background-color);
-	border-radius: 3px;
+	background-color: var(--card-background-color);
+	border-radius: var(--border-radius);
 	box-sizing: border-box;
 	overflow-x: auto;
 }
@@ -13,9 +13,14 @@ code {
 pre {
 	width: 100%;
 	padding: 11px 16px;
-	background-color: var(--input-background-color);
-	border-radius: 3px;
+	background-color: var(--card-background-color);
+	border-radius: var(--border-radius);
 	overflow-x: auto;
+}
+
+pre.mermaid {
+	background: transparent;
+	border: 1px solid var(--border-color);
 }
 
 blockquote::before{
@@ -35,7 +40,7 @@ blockquote{
 	padding-left: 16px;
 	padding-right: 16px;
 	background: var(--primary-color-opacity);
-	border-radius: 3px;
+	border-radius: var(--border-radius);
 	overflow: hidden;
 	margin-right: 0;
 }
@@ -46,7 +51,7 @@ ul {
 
 table {
 	border-collapse: collapse;
-	border-radius: 6px;
+	border-radius: var(--border-radius);
 	border-style: hidden; /* hide standard table (collapsed) border */
 	box-shadow: 0 0 0 1px var(--border-color); /* this draws the table border  */ 
 	overflow: hidden;
@@ -81,3 +86,5 @@ td + td {
 td, th {
 	padding: 4px 9px;
 }
+
+

@@ -18,6 +18,14 @@ pre {
 	overflow-x: auto;
 }
 
+pre > code {
+	color: var(--text-color);
+}
+
+code {
+	color: var(--primary-color);
+}
+
 pre.mermaid {
 	background: transparent;
 	border: 1px solid var(--border-color);

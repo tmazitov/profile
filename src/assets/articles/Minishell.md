@@ -104,6 +104,8 @@ Provide ability to interrupt the command execution or shell work. In this projec
 
 ## How is works?
 
+### Parsing of the user input
+
 Imagine that user had open the minishell at first time and want to type very complicated prompt:
 
 ```bash
@@ -112,7 +114,7 @@ ls | < infile grep test | wc -l > outfile1 > outfile2
 
 As you can see it's just a string with many arguments and words that separated by spaces. But how to detect here any command or instructions that shell need to execute?
 
-At first, we are need `split this string by |` character that means pipe. Why it's needed? Because each part that separated by pipe should to execute in parallel using child processes. After split we are need to create a Abstract Syntax Tree with very strict structure:
+At first, we are need `split this string by |` character that means pipe. Why it's needed? Because each part that separated by pipe should be executed in parallel using child processes in the execution part. After split we are need to create a Abstract Syntax Tree and fill them:
 
 ```mermaid
 flowchart TD
@@ -124,11 +126,11 @@ C ---> F("wc -l > out1 > out2")
 
 ```
 
-This structure has very simple rule : if the node has a child nodes this node is a `pipe`, if it isn't this node is a `command`. At this step we can see how many child processes our program will use to execute the user prompt. Next step will be `extract the input and output redirections` from the command nodes.
+This structure has very simple rule of the filling : if the node has child nodes this node is a `pipe`, if it isn't this node is a `command`. At this step we can see how many child processes our program will use to execute the user prompt (3 processes).  Next step will be `extract the input and output redirections` from the command nodes.
 
-As I told earlier, we have 4 types of redirections to implement : `>>`, `>`, `<`, `<<`. After each redirection key should be a support argument that provide addiction information about destination or source file or limiter string for temporary file. If it isn't prompt being invalid and the shell should display an error.
+As I told earlier, we have 4 types of redirections to implement : `>>`, `>`, `<`, `<<`. After each redirection key <u>should be a support argument</u> that provide addicted information about destination or source file or limiter string for temporary file. If it isn't prompt being invalid and the shell should display an error.
 
-Using this rule we can easily extract all kinds of redirection from the command nodes:
+Using this rule we can easily extract all kinds of redirections from the command nodes. During the extract do not forget about to check the access to the required files. After extract our tree will looks like this:
 
 ```mermaid
 flowchart TD
@@ -141,4 +143,30 @@ C ---> F("wc -l")
 F <-...-> FF("outputs : ['> out1', '> out2']")
 ```
 
+The final step will be to make a connection between commands using `pipe system call function`. Why is it a system call? Because our program using this function to call the OS to do something. In this case OS will create an temporary file and return its file descriptors with `read and write` accesses. When program using write fd to record something to the temporary file, the program that currently reading using read fd will automatically read new wrote value.
 
+```mermaid
+graph LR
+	
+    subgraph Pipe
+	
+    end
+    
+	subgraph ProgramA
+	    A["write()"] -.- W(Write fd)  
+	end
+
+	subgraph ProgramB
+		direction TB
+		B["read()"] -.- R(Read fd)  
+	end
+
+	ProgramA-->|data|Pipe -->|data| ProgramB
+```
+
+>The max size of temporary file is 64KB (for someone it's very important to know). 
+
+Using this tool we can make chain of the pair connection between nodes. Finally the Abstract Syntax Tree is ready to use in the execution part.
+### Execution
+
+So, main preparation steps are finished, let's execute something!

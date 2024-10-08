@@ -1,0 +1,83 @@
+h1, h2, h3 {
+	color: var(--primary-color);
+}
+
+code {
+	padding: 3px 5px;
+	background-color: var(--input-background-color);
+	border-radius: 3px;
+	box-sizing: border-box;
+	overflow-x: auto;
+}
+
+pre {
+	width: 100%;
+	padding: 11px 16px;
+	background-color: var(--input-background-color);
+	border-radius: 3px;
+	overflow-x: auto;
+}
+
+blockquote::before{
+	content: "";
+	font-size: 2em;
+	color: var(--primary-color);
+	position: absolute;
+	border-left: 2px solid var(--primary-color);
+	top: 0;
+	left: 0;
+	height: 100%;
+}
+
+blockquote{
+	position: relative;
+	margin-left: 0;
+	padding-left: 16px;
+	padding-right: 16px;
+	background: var(--primary-color-opacity);
+	border-radius: 3px;
+	overflow: hidden;
+	margin-right: 0;
+}
+
+ul {
+	padding-left: 24px;
+}
+
+table {
+	border-collapse: collapse;
+	border-radius: 6px;
+	border-style: hidden; /* hide standard table (collapsed) border */
+	box-shadow: 0 0 0 1px var(--border-color); /* this draws the table border  */ 
+	overflow: hidden;
+	width: 100%;
+}
+
+td {
+	border: 1px solid var(--border-color);
+}
+
+thead + tbody {
+	border-top: 1px solid var(--border-color);
+}
+
+thead {
+	background-color: var(--card-background-color);
+}
+
+tr + tr {
+	border-top: 1px solid var(--border-color);
+}
+
+
+th + th {
+	border-left: 1px solid var(--border-color);
+}
+
+td + td {
+	border-left: 1px solid var(--border-color);
+}
+
+td, th {
+	padding: 4px 9px;
+}

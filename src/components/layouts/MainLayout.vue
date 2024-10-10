@@ -1,5 +1,7 @@
 <template>
-    <div class="main-layout">
+    <div class="main-layout" v-bind:class="{
+		'is-hide-header': hideHeaderOnScroll,
+	}">
         <Header :hide-on-scroll="hideHeaderOnScroll"></Header>
         <div class="main-layout__content" v-bind:class="{
 			'is-hide-header': hideHeaderOnScroll,
@@ -42,6 +44,11 @@ defineProps({
 	flex-direction: column;
 	align-items: center;
 	margin-top: 56px;
+}
+
+.main-layout.is-hide-header{
+	margin-top: 0;
+	height: 100dvh;
 }
 
 .main-layout__content{

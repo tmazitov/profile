@@ -43,7 +43,6 @@
 .page{
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh;
 	gap: 18px;
 	width: 100%;
 	padding-top: 24px;

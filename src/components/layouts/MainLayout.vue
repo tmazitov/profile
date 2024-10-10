@@ -52,10 +52,14 @@ defineProps({
 }
 
 .main-layout__content{
-	min-height: 100vh;
+	height: fit-content;
 	box-sizing: border-box;
 	flex: 1;
 	max-width: 960px;
+}
+
+.main-layout__content > *:last-child{
+	margin-bottom: 60px;
 }
 
 .main-layout__content.is-hide-header{

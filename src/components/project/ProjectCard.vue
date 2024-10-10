@@ -1,5 +1,5 @@
 <template>
-<div class="project" v-if="project">
+<div class="project" v-if="project" @click="openProject">
 	<div class="project__image">
 		<img :src="image">
 	</div>
@@ -17,9 +17,6 @@
 			<div class="project__buttons">
 				<div class="project__submit-date">
 					{{ project.finishDate.toLocaleDateString() }}
-				</div>
-				<div class="project__button" @click="openProject">
-					Details
 				</div>
 			</div>
 		</div>
@@ -64,6 +61,10 @@ const openProject = () => {
 	width: inherit;
 	overflow: hidden;
 	transition: background .3s;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 .project__content{
 	padding: 10px;

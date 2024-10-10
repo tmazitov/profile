@@ -6,14 +6,12 @@
 			'is-disable-mobile-padding': disableMobilePadding,
 		}">
             <slot></slot>
-			<Footer/>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
 import Header from './components/Header.vue';
-import Footer from './components/Footer.vue';
 import { defineProps } from 'vue';
 
 defineProps({
@@ -38,19 +36,19 @@ defineProps({
 
 .main-layout{
 	position: relative;
-	height: 100dvh;
+	height: calc(100dvh - 56px);
 	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin-top: 56px;
 }
 
 .main-layout__content{
 	min-height: 100vh;
 	box-sizing: border-box;
 	flex: 1;
-	margin-top: 56px;
-	max-width: 960px
+	max-width: 960px;
 }
 
 .main-layout__content.is-hide-header{

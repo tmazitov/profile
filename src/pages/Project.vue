@@ -77,7 +77,8 @@ const project = computed(() => {
 			setTimeout(setupCharts, 0)
 		})
 	} else {
-		isLoaded.value = project.article.isLoaded
+		isLoaded.value = project.article?
+			project.article.isLoaded : false
 		setTimeout(setupCharts, 0)
 	}
 
@@ -89,9 +90,7 @@ const project = computed(() => {
 <style scoped>
 
 .page{
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
+	padding-top: 0;
 }
 
 .project__header{

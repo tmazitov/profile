@@ -53,15 +53,6 @@ watch(() => filters, (_) => {
 
 <style scoped>
 
-.page{
-	padding-top: 24px;
-	display: flex;
-	flex-direction: column;
-	gap: 18px;
-	width: 100%;
-	min-height: 100vh;
-}
-
 .project-list__header{
 	font-size: 32px;
 	font-weight: 600;
@@ -73,7 +64,6 @@ watch(() => filters, (_) => {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 16px;
-	margin-bottom: 120px;
 }
 
 .filter-search{

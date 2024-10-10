@@ -31,7 +31,7 @@ const projects:Array<Project> = [
 			getProjectCategoryByName("Shell"),
 			getProjectCategoryByName("C"),
 		],
-		image: imageGet('winter.gif'),
+		image: imageGet('minishell.gif'),
 		finishDate: new Date("2024.07.05"),
 		description: "Try your hand - create your own mini shell and don't turn gray from bugs and memory leaks!",
 		article: new Article("Minishell.md"),

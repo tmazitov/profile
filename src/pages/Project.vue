@@ -113,7 +113,7 @@ const project = computed(() => {
 	display: flex;
 	flex-direction: column;
 	gap: 0.7em;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 .project__categories{
 	display: flex;

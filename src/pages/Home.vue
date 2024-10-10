@@ -42,7 +42,7 @@
 	</InfoBlock>
 
 	<!-- Contacts -->
-	<InfoBlock title="Contacts" name="contacts" fit-content>
+	<InfoBlock name="contacts" fit-content>
 		<ContactList/>
 	</InfoBlock>
 	

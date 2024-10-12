@@ -27,6 +27,7 @@
 				<vue-markdown ref="markdown"
 					v-if="isLoaded && project.article.content" 
 					:source="project.article.content"
+					:options="markdownOptions"
 				/>
 			</div>
 			<div class="project__info" v-else>
@@ -50,6 +51,9 @@ import { Icon } from '@iconify/vue';
 
 const isLoaded = ref(false)
 const markdown = ref<any>(null)
+const markdownOptions = {
+	html: true,
+}
 const setupCharts = () => {
 	if (!markdown.value)
 		return

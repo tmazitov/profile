@@ -21,6 +21,7 @@ function loadProjectsImages(){
 }
 
 const imageGet = loadProjectsImages()
+const inProgress = true
 
 const projects:Array<Project> = [
 	new Project({
@@ -47,7 +48,7 @@ const projects:Array<Project> = [
 		image: "https://i.pinimg.com/originals/9d/ea/64/9dea6422afee150cbe2f65b5317285eb.gif",
 		description: "Raycasting, basic 3D graphics, a lot of math and first own game from scratch.",
 		finishDate: new Date("2024.09.01"),
-		article: null,
+		article: new Article("Cub3D.md", inProgress),
 	}),
 	new Project({
 		id: 3,
@@ -60,7 +61,7 @@ const projects:Array<Project> = [
 		image: imageGet('al_reyada.png'),
 		description: "Website for a team project as part of an Sustainability hackathon by Total energies",
 		finishDate: new Date("2024.03.24"),
-		article: null,
+		article: new Article("SustainabilityHackathon.md", inProgress),
 	}),
 ]
 

@@ -2,14 +2,16 @@ import API from "@/api"
 
 class Article {
 	isLoaded:boolean = false
+	isInProgress:boolean = false
 	name:string
 	content:string|null = null
-	constructor(name:string) {
+	constructor(name:string, isInProgress=false) {
 		this.name = name
+		this.isInProgress = isInProgress
 	}
 
 	load() {
-		if (this.isLoaded) {
+		if (this.isLoaded || this.isInProgress) {
 			return 
 		}
 		return API.getArticle(this.name).then((response) => {

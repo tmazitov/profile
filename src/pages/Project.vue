@@ -23,14 +23,18 @@
 				</div>
 			</div>
 
-			<div class="project__info">
+			<div class="project__info" v-if="!project.article.isInProgress"> 
 				<vue-markdown ref="markdown"
 					v-if="isLoaded && project.article.content" 
 					:source="project.article.content"
-					
 				/>
 			</div>
-
+			<div class="project__info" v-else>
+				<div class="is-in-progress-message">
+					<Icon icon="tabler:clock" height="3em" width="3em"/>
+					Article is in progress
+				</div>
+			</div>
 		</div>
 		<div class="page" v-else></div>
 </template>
@@ -42,6 +46,7 @@ import { computed, ref } from 'vue';
 import { projects } from '../info/projects';
 import VueMarkdown from 'vue-markdown-render'
 import GraphProvider from '@/types/graph';
+import { Icon } from '@iconify/vue';
 
 const isLoaded = ref(false)
 const markdown = ref<any>(null)
@@ -98,6 +103,17 @@ const project = computed(() => {
     justify-content: space-between;
 	align-items: center;
 	gap: 10px;
+}
+
+.is-in-progress-message{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius);
+	padding: 10px;
 }
 
 .project__name{

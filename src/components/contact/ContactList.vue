@@ -14,6 +14,14 @@
 					<Icon :icon="contact.icon" height="20px" width="20px"/>
 				</div>
 			</div>
+
+			<div class="contact-list__message with-separate-line">
+				<div class="line"></div>
+				<span>Or</span>
+				<div class="line"></div>
+			</div>
+
+			<BaseButton title="Download my CV"/>
 		</div>
 	</div>
 </template>
@@ -21,6 +29,7 @@
 <script setup lang="ts">
 import contacts from '@/info/contacts';
 import { Icon } from '@iconify/vue';
+import BaseButton from '../inputs/BaseButton.vue';
 
 const open = (link:string) => {
 	if (!link)
@@ -35,7 +44,8 @@ const open = (link:string) => {
 	width: 100%;
 
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	gap:16px;
 	justify-content: center;
 	align-items: center;
 	margin: 60px 0;
@@ -43,6 +53,7 @@ const open = (link:string) => {
 
 .contact-list{
 	display: flex;
+	height: 100%;
 	flex-direction: column;
 	gap: 10px;
 	background: var(--card-background-color);
@@ -88,5 +99,27 @@ const open = (link:string) => {
 .contact-item > * {
 	user-select: none;
 	cursor: pointer;
+}
+
+.contact-list__message{
+	font-size: 0.9em;
+	width: 100%;
+	text-align: center;
+	font-weight: 600;
+}
+
+.with-separate-line {
+	display: flex;
+	align-items: center;
+}
+
+.with-separate-line .line {
+	flex-grow: 1;
+	height: 1px;
+	background-color: var(--border-color);
+}
+
+.with-separate-line span {
+  	margin: 0 10px;
 }
 </style>

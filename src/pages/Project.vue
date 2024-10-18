@@ -121,7 +121,7 @@ const project = computed(() => {
 }
 
 .project__name{
-	font-size: 24px;
+	font-size: 1.4em;
 	font-weight: 700;
 
 	width: 100%;

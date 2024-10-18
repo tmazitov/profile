@@ -83,7 +83,7 @@ const openProject = () => {
 }
 
 .project__name{
-	font-size: 18px;
+	font-size: 1.4em;
 	font-weight: 500;
 	width: 100%;
     text-overflow: ellipsis;

@@ -66,14 +66,16 @@ const open = (link:string) => {
 .contact-list__items {
 	display: flex;
 	flex-direction: row;
+	width: 100%;
 }
 
 .contact-item {
+	flex: 1;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	justify-content: center;
 	cursor: pointer;
-	padding: 0 10px;
 	transition: .3s color;
 }
 
@@ -84,13 +86,6 @@ const open = (link:string) => {
 	color: var(--primary-color-opacity);
 }
 
-.contact-item:last-child{
-	padding-right: 0;
-}
-
-.contact-item:first-child{
-	padding-left: 0;
-}
 
 .contact-item + .contact-item {
 	border-left: 1px solid var(--border-color);
@@ -102,13 +97,14 @@ const open = (link:string) => {
 }
 
 .contact-list__message{
-	font-size: 0.9em;
 	width: 100%;
+	font-size: 16px;
 	text-align: center;
 	font-weight: 600;
 }
 
 .with-separate-line {
+	font-size: 0.9em;
 	display: flex;
 	align-items: center;
 }

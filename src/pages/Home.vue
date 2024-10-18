@@ -24,6 +24,11 @@
 		</div>
 	</InfoBlock>
 
+	<!-- Contacts -->
+	<InfoBlock name="skills" fit-content>
+		<SkillList/>
+	</InfoBlock>
+
 	<!-- Journey -->
 
 	<InfoBlock title="Journey" name="journey">	
@@ -56,6 +61,7 @@ import InfoBlock from '../components/InfoBlock.vue';
 import { journeyEvents } from '../info/journey';
 import ContactList from '@/components/contact/ContactList.vue';
 import { useRouter } from 'vue-router';
+import SkillList from '@/components/skills/SkillList.vue';
 
 const buttons = [
 	{title: "Journey", icon: "tabler:map", infoBlockName: "journey"},

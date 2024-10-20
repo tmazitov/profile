@@ -2,7 +2,7 @@ import Skill from "@/types/skill";
 
 const skills:Array<Skill>= [
 	new Skill({id: 5, name: "VueJS", icon:"tabler:brand-vue", color: "#41B883", 
-		description: "For me it's Main frontend framework. \
+		description: "For me it's the best frontend framework. \
 					Using Vue I can easily create different types of web applications. \
 					And something else about VueJS.", 
 		duration: 3,

@@ -50,5 +50,9 @@ export default {
 
 	user-select: none;
 	transition: background .25s;
+
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 </style>

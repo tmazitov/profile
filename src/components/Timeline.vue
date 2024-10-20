@@ -91,7 +91,7 @@ onMounted(() => {
 
 
 .timeline__item > .timeline__item-key{
-	font-size: 1.2em;
+	font-size: 1.1em;
 	user-select: none;
 	width: 100%;
 	line-height: 1.3;
@@ -119,7 +119,7 @@ onMounted(() => {
 
 .timeline__item > .timeline__item-value{
 	width: 100%;
-	font-size: 1.2em;
+	font-size: 1.1em;
 	font-weight: 300;
 	line-height: 1.3;
 	position: relative;

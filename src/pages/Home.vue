@@ -26,7 +26,10 @@
 
 	<!-- Contacts -->
 	<InfoBlock name="skills" fit-content>
-		<SkillList/>
+		<div class="about-me">
+			<AboutMeCard/>
+			<SkillList/>
+		</div>
 	</InfoBlock>
 
 	<!-- Journey -->
@@ -62,6 +65,7 @@ import { journeyEvents } from '../info/journey';
 import ContactList from '@/components/contact/ContactList.vue';
 import { useRouter } from 'vue-router';
 import SkillList from '@/components/skills/SkillList.vue';
+import AboutMeCard from '@/components/aboutme/AboutMeCard.vue';
 
 const buttons = [
 	{title: "Journey", icon: "tabler:map", infoBlockName: "journey"},
@@ -159,4 +163,10 @@ const scrollTo = (infoBlockName: string|undefined) => {
 	transition: color .3s;
 }
 
+.about-me{
+	display: flex;
+	flex-direction: column;
+	gap: var(--mobile-padding);
+	margin: 4em 0;
+}
 </style>

@@ -76,7 +76,6 @@ const activateSkill = (id:number) => {
 .skill-list-container{
 	display: flex;
 	flex-direction: row;
-	margin: 4em 0;
 }
 
 .skill-list{
@@ -89,6 +88,7 @@ const activateSkill = (id:number) => {
 	overflow: hidden;
 	transition: all .3s;
 	max-height: 850px;
+	max-width: 500px;
 }
 
 @media (max-width: 768px) {
@@ -133,13 +133,12 @@ const activateSkill = (id:number) => {
 	}
 	to {
 		opacity: 1;
-		max-width: 850px;
+		max-width: 500px;
 	}
 }
 }
 
 .skill-list.active {
-	max-width: 100%;
 }
 
 .skill-list th {

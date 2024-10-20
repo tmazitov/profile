@@ -7,7 +7,7 @@
 
 			<div class="project__short-info topic project__info">
 				<div class="project__header">
-					<div class="project__name">{{ project.name }}</div>
+					<div class="project__name" translate="no">{{ project.name }}</div>
 					<div class="project__submit-date">{{ project.finishDate.toLocaleDateString() }}</div>
 				</div>
 

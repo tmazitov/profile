@@ -33,7 +33,7 @@
 							'var(--primary-color-hover)' :
 							'#626262'"/>
 					</div>
-					<div class="item__title">
+					<div class="item__title" translate="no">
 						{{ item.title }}
 					</div>
 				</div>

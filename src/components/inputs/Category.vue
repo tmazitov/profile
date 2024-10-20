@@ -1,5 +1,6 @@
 <template>
-	<div class="category" 
+	<div class="category"
+	translate="no"
 	@mouseover="isHovered = true" 
 	@mouseleave="isHovered = false"
 	v-bind:style="{

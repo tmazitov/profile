@@ -4,7 +4,9 @@
 		<img :src="image">
 	</div>
 	<div class="project__content">
-		<div class="project__name">{{ project.name }}</div>
+		<div class="project__name" translate="no">
+			{{ project.name }}
+		</div>
 		<div class="project__categories">
 			<Category :title="category.name" :color="category.color"
 				v-for="category in project.categories" 

@@ -21,18 +21,20 @@
 
 .about-me-card__container{
 	display: flex;
+	flex: 3;
 }
 
 .about-me-card{
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	max-width: 500px;
 	padding: 10px;
 	min-height: 134px;
-	background: var(--card-background-color);
 	border: 1px solid var(--border-color);
 	border-radius: var(--border-radius);
+	
+	background: var(--primary-color-opacity);
+	box-shadow: 0 0 6px 1px var(--primary-color);
 }
 
 .card__photo{

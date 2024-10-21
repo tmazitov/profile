@@ -1,4 +1,6 @@
 <template>
+
+
 	<div class="skill-list-container">
 		<div class="skill-list" 
 		v-bind:class="{
@@ -74,8 +76,7 @@ const activateSkill = (id:number) => {
 
 <style scoped>
 .skill-list-container{
-	display: flex;
-	flex-direction: row;
+	flex: 2;
 }
 
 .skill-list{
@@ -88,57 +89,30 @@ const activateSkill = (id:number) => {
 	overflow: hidden;
 	transition: all .3s;
 	max-height: 850px;
-	max-width: 500px;
+	flex-direction: column;
+	width: 100%;
+}
+.skill-list table {
+	width: 100%;
 }
 
-@media (max-width: 768px) {
-	.skill-list {
-		flex-direction: column;
-		width: 100%;
-	}
-
-	.skill-list table {
-		width: 100%;
-	}
-
-	.skill-list .skill-card {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	
-	@keyframes about {
-		from {
-			opacity: 0;
-			max-height: 0;
-		}
-		to {
-			opacity: 1;
-			max-height: 112px;
-		}
-	}
+.skill-list .skill-card {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-@media (min-width: 768px) {
-	.skill-list table {
-		width: fit-content;
-	}
 
-	@keyframes about {
+@keyframes about {
 	from {
 		opacity: 0;
-		max-width: 0;
+		max-height: 0;
 	}
 	to {
 		opacity: 1;
-		max-width: 500px;
+		max-height: 112px;
 	}
-}
-}
-
-.skill-list.active {
 }
 
 .skill-list th {
@@ -177,7 +151,6 @@ const activateSkill = (id:number) => {
 	flex-direction: column;
 	gap: 4px;
 	max-height: 112px;
-	max-width: 850px;
 	overflow: hidden;
 }
 
@@ -208,5 +181,12 @@ const activateSkill = (id:number) => {
 	animation: about 0.3s reverse;
 }
 
+
+@media (max-width: 768px) {
+	.skill-list {
+		width: 100%;
+		max-width: none;
+	}
+}
 
 </style>

@@ -25,7 +25,7 @@
 	</InfoBlock>
 
 	<!-- Contacts -->
-	<InfoBlock name="skills" fit-content>
+	<InfoBlock name="aboutme" fit-content>
 		<div class="about-me">
 			<AboutMeCard/>
 			<SkillList/>
@@ -68,8 +68,9 @@ import SkillList from '@/components/skills/SkillList.vue';
 import AboutMeCard from '@/components/aboutme/AboutMeCard.vue';
 
 const buttons = [
+	{title: "About me", icon: "tabler:user-square-rounded", infoBlockName: "aboutme"},
 	{title: "Journey", icon: "tabler:map", infoBlockName: "journey"},
-	{title: "Projects", icon: "tabler:briefcase", infoBlockName: "projects"},
+	{title: "Projects", icon: "tabler:briefcase", infoBlockName: "projects", outlined: true},
 	{title: "Contacts", icon: "tabler:message-2", infoBlockName: "contacts", outlined: true},
 ]
 
@@ -164,9 +165,17 @@ const scrollTo = (infoBlockName: string|undefined) => {
 }
 
 .about-me{
+	max-width: 800px;
+
 	display: flex;
 	flex-direction: column;
 	gap: var(--mobile-padding);
 	margin: 4em 0;
+}
+
+@media (min-width: 768px) {
+	.about-me {
+		flex-direction: row;
+	}
 }
 </style>

@@ -40,8 +40,42 @@ defineProps({
 	gap: 12px;
 }
 
-.base__button:hover{
-	background: var(--button-background-hover);
+
+
+@media (max-width: 768px) {
+	.base__button:hover{
+		background: var(--button-background);
+	}	
+
+	.base__button.primary:hover{
+		background: var(--primary-color);
+	}
+
+	.base__button.outlined:hover{
+		background: transparent;
+		transition: outline .3s;
+
+		outline: 1.5px solid var(--button-background);
+	}
+}
+
+@media (min-width: 768px) {
+	.base__button:hover{
+		background: var(--button-background-hover);
+	}
+	
+	.base__button:active {
+		background: var(--primary-color-opacity);
+	}
+
+	.base__button.outlined:hover{
+		outline: 1.5px solid var(--button-background-hover);
+		background: var(--button-background-hover);
+	}
+	.base__button.primary:hover{
+		background: var(--primary-color-hover);
+	}
+	
 }
 
 .base__button.primary{
@@ -52,9 +86,6 @@ defineProps({
 	text-align: center;
 }
 
-.base__button.primary:hover{
-	background: var(--primary-color-hover);
-}
 
 .base__button.outlined{
 	background: transparent;
@@ -63,10 +94,6 @@ defineProps({
 	outline: 1.5px solid var(--button-background);
 }
 
-.base__button.outlined:hover{
-	outline: 1.5px solid var(--button-background-hover);
-	background: var(--button-background-hover);
-}
 
 .base__button-icon{
 	display: flex;

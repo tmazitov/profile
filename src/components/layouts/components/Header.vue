@@ -1,10 +1,12 @@
 <template>
 
-	<ModalTemplate v-model="isShowContacts">
-		<div class="contacts-modal-container">
-			<ContactList/>
-		</div>
-	</ModalTemplate>
+	<span class="mobile-contacts">
+		<ModalTemplate v-model="isShowContacts">
+			<div class="contacts-modal-container">
+				<ContactList/>
+			</div>
+		</ModalTemplate>
+	</span>
 
 	<transition name="header">
 		<div class="header" v-if="isShow">
@@ -19,23 +21,17 @@
 
 			<div class="header__section">
 				<div class="header__item" 
-				v-for="item, index in menuFirstPart()"
+				v-for="item, index in menuItems"
 				:key="`menu-first-part__item-${index}`"
-				@click="goToPage(item.pageName)">
+				@click="() => item.action()">
 					{{ item.title }}
 				</div>
 			</div>
 
-			<!-- Header end section -->
-
-			<div class="header__section">
-				<div class="header__item" 
-				v-for="item, index in menuSecondPart()"
-				:key="`menu-second-part__item-${index}`"
-				@click="goToPage(item.pageName)">
-					<Icon :icon="item.icon" width="24" height="24" />
-				</div>
+			<div class="desktop-contacts" v-if="isShowContacts">
+				<ContactList/>
 			</div>
+
 
 			<!-- Menu for mobile -->
 
@@ -44,17 +40,14 @@
 					<div class="side-menu__content">
 						<div class="side-menu__list">
 							<div class="side-menu__item" 
-							v-for="item, index in menuFirstPart()"
-							:key="`side-menu__${index}`" @click="goToPage(item.pageName)">
+							v-for="item, index in menuItems"
+							:key="`side-menu__${index}`" 
+							@click="() => item.action()">
 								<div class="side-menu__item-icon">
-									<Icon :icon="item.icon" width="24" height="24" />
+									<Icon :icon="item.icon" width="22" height="22" />
 								</div>
 								<div class="side-menu__item-title">{{ item.title }}</div>
 							</div>
-						</div>
-
-						<div class="side-menu__contacts" @click="isShowContacts = true">
-							Contacts
 						</div>
 					</div>
 				</SideMenu>
@@ -130,20 +123,19 @@ onUpdated(() => {
 type MenuItem = {
 	title: string
 	icon: string
-	pageName: string|undefined
+	action: Function
+}
+const toggleContacts = () => {
+	isShowContacts.value = !isShowContacts.value
 }
 
 const menuItems:Array<MenuItem> = [
-	{title: "Home", icon: "tabler:home-2", pageName: "home"},
-	{title: "Projects", icon: "tabler:briefcase", pageName: "project-list"},
+	{title: "Home", icon: "tabler:home-2", action: () => {goToPage('home')}},
+	{title: "Projects", icon: "tabler:briefcase", action: () => {goToPage('project-list')}},
+	{title: "Contacts", icon: "tabler:message-2", action: toggleContacts},
 	// {title: "Articles", icon: "tabler:article", pageName: undefined},
 	// {title: "Library", icon: "tabler:archive", pageName: undefined},
-	{title: "Github", icon: "tabler:brand-github", pageName: undefined},
-	{title: "LinkedIn", icon: "tabler:brand-linkedin", pageName: undefined},
 ]
-
-const menuFirstPart = () => menuItems.slice(0, 2)
-const menuSecondPart = () => menuItems.slice(2, 4)
 
 const goToPage = (pageName: string|undefined) => {
 	if (!pageName)
@@ -158,6 +150,9 @@ const goToPage = (pageName: string|undefined) => {
 	router.push({name: pageName})
 	sideBarIsOpen.value = false
 }
+
+
+
 </script>
 
 <style>
@@ -165,20 +160,22 @@ const goToPage = (pageName: string|undefined) => {
 
 .header{
     height: 56px;
-    border-bottom: 1px solid;
+    border: 1px solid;
     border-color: var(--border-color);
     background: var(--background-color);
     position: fixed;
-    top: 0;
-	left: 0;
-	right: 0;
+    top: 16px;
 	z-index: 3;
 
+	width: calc(100% - max(169px, 15%) - max(169px, 15%));
+	left: max(169px, 15%);
+	right: max(169px, 15%);
+	border-radius: var(--border-radius);
+
     display: flex;
-    justify-content: space-between;
     flex-direction: row;
-    gap: 24px;
-    padding: 0 32px;
+    gap: 32px;
+    padding: 0 24px;
 }
 
 .header__section{
@@ -200,6 +197,7 @@ const goToPage = (pageName: string|undefined) => {
     cursor: pointer;
     user-select: none;
     transition: color .25s;
+	cursor: pointer;
 }
 
 .header__item.logo{
@@ -210,6 +208,12 @@ const goToPage = (pageName: string|undefined) => {
 @media (max-width: 768px) {
 	.header{
 		padding: 0 var(--mobile-padding);
+		width: 100%;
+		left: 0;
+		right: 0;
+		top: 0;
+		border-radius: 0;
+		justify-content: space-between;
 	}
 	.header__section{
 		display: none;
@@ -218,11 +222,19 @@ const goToPage = (pageName: string|undefined) => {
         width: calc(100% - 32px);
         padding: 0 16px;
     }
+	.desktop-contacts{
+		display: none;
+	}
+
 }
 @media (min-width: 769px) {
 	.header__menu{
 		display: none;
 	}
+	.mobile-contacts{
+		display: none;
+	}
+
 }
 
 .side-menu__list {
@@ -237,6 +249,8 @@ const goToPage = (pageName: string|undefined) => {
     display: flex;
     flex-direction: row;
     gap: 8px;
+	cursor: pointer;
+
 }
 
 .side-menu__item > *{ 
@@ -288,5 +302,12 @@ const goToPage = (pageName: string|undefined) => {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.desktop-contacts{
+	position: absolute;
+	top: 36px;
+	right: 50%;
+	transform: translateX(50%);
 }
 </style>

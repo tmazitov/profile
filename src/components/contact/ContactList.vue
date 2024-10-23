@@ -80,6 +80,7 @@ const contactAction = (action: string, link:string) => {
 .contact-list{
 	display: flex;
 	height: 100%;
+	width: 183px;
 	flex-direction: column;
 	gap: 10px;
 	background: var(--card-background-color);

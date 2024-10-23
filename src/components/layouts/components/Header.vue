@@ -1,4 +1,11 @@
 <template>
+
+	<ModalTemplate v-model="isShowContacts">
+		<div class="contacts-modal-container">
+			<ContactList/>
+		</div>
+	</ModalTemplate>
+
 	<transition name="header">
 		<div class="header" v-if="isShow">
 			
@@ -46,14 +53,8 @@
 							</div>
 						</div>
 
-						<div class="side-menu__contacts">
-							<div>Contacts</div>
-							<div class="header__item" 
-							v-for="item, index in menuSecondPart()"
-							:key="`menu-second-part__item-${index}`"
-							@click="goToPage(item.pageName)">
-								<Icon :icon="item.icon" width="24" height="24" />
-							</div>
+						<div class="side-menu__contacts" @click="isShowContacts = true">
+							Contacts
 						</div>
 					</div>
 				</SideMenu>
@@ -67,12 +68,16 @@ import SideMenu from './menu/SideMenu.vue'
 import { useRoute, useRouter } from 'vue-router';
 import { onMounted, onUpdated, ref } from 'vue';
 import { Icon } from '@iconify/vue';
+import ModalTemplate from '@/components/modals/ModalTemplate.vue';
+import ContactList from '@/components/contact/ContactList.vue';
 
 const route = useRoute()
 const router = useRouter()
 const sideBarIsOpen = ref(false)
 const isShow = ref(false)
+const isShowContacts = ref(false)
 const isHideEnabled = ref(false)
+
 const props = defineProps({
 	hideOnScroll: {
 		type: Boolean,
@@ -268,7 +273,20 @@ const goToPage = (pageName: string|undefined) => {
 	display: flex;
 	flex-direction: row;
 	gap: 16px;
-	border-top: 1px solid var(--border-color);
 	padding-top: 16px;
+	border-top: 1px solid var(--border-color);
+	text-decoration: underline;
+}
+
+.contacts-modal-container{
+	position: absolute;
+
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 </style>

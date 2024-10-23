@@ -175,6 +175,7 @@ const goToPage = (pageName: string|undefined) => {
     flex-direction: row;
     gap: 32px;
     padding: 0 24px;
+	max-width: 960px;
 }
 
 .header__section{

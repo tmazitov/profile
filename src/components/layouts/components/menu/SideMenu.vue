@@ -36,12 +36,11 @@ const toggleOpen = () => {
 }
 
 .menu__content{
-	width: 100%;
 	height: 156px;
 	position: absolute;
-	left: 0;
-	right: 0;
-	top: 56px;
+	left: -1px;
+	right: -1px;
+	top: 55px;
 	background: var(--background-color);
 	border-left: 1px solid var(--border-color);
 	overflow-x: hidden;

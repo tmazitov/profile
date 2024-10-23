@@ -38,12 +38,12 @@ defineProps({
 
 .main-layout{
 	position: relative;
-	height: calc(100dvh - 56px);
+	height: calc(100dvh - 72px);
+	margin-top: 72px;
 	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: 56px;
 }
 
 .main-layout.is-hide-header{
@@ -68,6 +68,12 @@ defineProps({
 
 @media (max-width: 768px) {
 	
+	.main-layout{
+	
+		height: calc(100dvh - 56px);
+		margin-top: 56px;
+	}
+
 	.main-layout__content{
 		width: calc(100% - var(--mobile-padding) - var(--mobile-padding));
 		margin-left: var(--mobile-padding);

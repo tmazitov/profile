@@ -168,9 +168,8 @@ const goToPage = (pageName: string|undefined) => {
 	z-index: 3;
 
 	width: calc(100% - max(169px, 15%) - max(169px, 15%));
-	left: max(169px, 15%);
-	right: max(169px, 15%);
 	border-radius: var(--border-radius);
+	box-sizing: border-box;
 
     display: flex;
     flex-direction: row;
